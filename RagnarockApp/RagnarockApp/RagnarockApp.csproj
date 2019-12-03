@@ -121,8 +121,9 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
-    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
-    <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
+    <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
+    <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
+    <Compile Include="EventArsen\ViewModel\EventVeiwModel.cs" />
     <Compile Include="EventArsen\View\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +136,9 @@
     <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
     <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
       <DependentUpon>EditQuizPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
+      <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
@@ -168,7 +172,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EventArsen\View\CreateEventPage.xaml">
+    <Page Include="EventArsen\View\EditEventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,6 +188,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuizVictor\View\PlayQuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserNicolai\View\UserPage.xaml">
     <Page Include="UserNicolai\View\EditUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RagnarockApp.EventArsen.ViewModel
+namespace RagnarockApp.EventArsen.Model
 {
-    class CreateEventViewModel
+    class EventManagerSingleton
     {
     }
 }
