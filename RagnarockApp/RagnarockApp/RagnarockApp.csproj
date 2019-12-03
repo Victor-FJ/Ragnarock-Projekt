@@ -136,6 +136,9 @@
     <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
       <DependentUpon>EditQuizPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
+      <DependentUpon>PlayQuizPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\ViewModel\UserViewModel.cs" />
@@ -176,6 +179,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="QuizVictor\View\EditQuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuizVictor\View\PlayQuizPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
