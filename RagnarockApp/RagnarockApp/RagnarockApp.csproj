@@ -133,7 +133,9 @@
     <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
       <DependentUpon>EditQuizPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
+    <Compile Include="UserNicolai\ViewModel\UserViewModel.cs" />
     <Compile Include="UserNicolai\View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
@@ -194,9 +196,7 @@
     <Folder Include="Persistency\" />
     <Folder Include="QuizVictor\Assets\" />
     <Folder Include="QuizVictor\Exceptions\" />
-    <Folder Include="UserNicolai\Assets\" />
-    <Folder Include="UserNicolai\Exceptions\" />
-    <Folder Include="UserNicolai\ViewModel\" />
+    <Folder Include="UserNicolai\Asset\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
