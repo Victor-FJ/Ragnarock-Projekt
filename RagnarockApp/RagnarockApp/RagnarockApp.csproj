@@ -123,7 +123,7 @@
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
-    <Compile Include="EventArsen\ViewModel\EventVeiwModel.cs" />
+    <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
     <Compile Include="EventArsen\View\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +134,7 @@
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
+    <Compile Include="QuizVictor\ViewModel\PlayQuizViewModel.cs" />
     <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
       <DependentUpon>EditQuizPage.xaml</DependentUpon>
     </Compile>

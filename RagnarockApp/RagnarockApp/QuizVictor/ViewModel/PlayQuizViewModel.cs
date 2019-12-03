@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RagnarockApp.EventArsen.ViewModel
+namespace RagnarockApp.QuizVictor.ViewModel
 {
-    class EventVeiwModel
+    class PlayQuizViewModel
     {
     }
 }
