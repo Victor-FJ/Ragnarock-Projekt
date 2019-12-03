@@ -119,91 +119,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\AdminConverter.cs" />
-    <Compile Include="Converters\ComplexFetureConverter.cs" />
-    <Compile Include="Converters\CountListConverter.cs" />
-    <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
-    <Compile Include="Converters\IndexOfArrayConverter.cs" />
-    <Compile Include="Common\MessageDialogHelper.cs" />
-    <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Common\RelayCommandWParam.cs" />
-    <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
-    <Compile Include="Converters\IndexToNumberConverter.cs" />
-    <Compile Include="Converters\TrueAmountConverter.cs" />
-    <Compile Include="Converters\TrueFetureConverter.cs" />
-    <Compile Include="EventArsen\Exceptions\IsNotEventException.cs" />
-    <Compile Include="EventArsen\Model\Event.cs" />
-    <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
-    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
-    <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
-    <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
-    <Compile Include="EventArsen\View\CreateEventPage.xaml.cs">
-      <DependentUpon>CreateEventPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EventArsen\View\EditEventPage.xaml.cs">
-      <DependentUpon>EditEventPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EventArsen\View\EventPage.xaml.cs">
-      <DependentUpon>EventPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
-    <Compile Include="Persistency\PersistencyFacade.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuizVictor\Exceptions\DoesNotExistException.cs" />
-    <Compile Include="QuizVictor\Exceptions\IncorrectSizeException.cs" />
-    <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
-    <Compile Include="QuizVictor\Exceptions\ValueAlreadyExistException.cs" />
-    <Compile Include="QuizVictor\Exceptions\ValueEmptyException.cs" />
-    <Compile Include="QuizVictor\Model\AnsweredQuistion.cs" />
-    <Compile Include="QuizVictor\Model\PlaySession.cs" />
-    <Compile Include="QuizVictor\Model\Quistion.cs" />
-    <Compile Include="QuizVictor\Model\Quiz.cs" />
-    <Compile Include="QuizVictor\Model\QuizManager.cs" />
-    <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
-    <Compile Include="QuizVictor\ViewModel\EditQuistionViewModel.cs" />
-    <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
-    <Compile Include="QuizVictor\ViewModel\PlayQuistionViewModel.cs" />
-    <Compile Include="QuizVictor\ViewModel\PlayQuizViewModel.cs" />
-    <Compile Include="QuizVictor\ViewModel\ResultQuizViewModel.cs" />
-    <Compile Include="QuizVictor\View\EditQuistionPage.xaml.cs">
-      <DependentUpon>EditQuistionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
-      <DependentUpon>EditQuizPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="QuizVictor\View\PlayQuistionPage.xaml.cs">
-      <DependentUpon>PlayQuistionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
-      <DependentUpon>PlayQuizPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="QuizVictor\View\ResultQuizPage.xaml.cs">
-      <DependentUpon>ResultQuizPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserNicolai\Exeptions\EmptyInputException.cs" />
-    <Compile Include="UserNicolai\Exeptions\IdExceptions.cs" />
-    <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
-    <Compile Include="UserNicolai\Exeptions\UserNameAlreadyUsedException.cs" />
-    <Compile Include="UserNicolai\Exeptions\UserNameException.cs" />
-    <Compile Include="UserNicolai\Model\User.cs" />
-    <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
-    <Compile Include="UserNicolai\ViewModel\CreateUserViewModel.cs" />
-    <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
-    <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
-    <Compile Include="UserNicolai\View\CreateUserPage.xaml.cs">
-      <DependentUpon>CreateUserPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserNicolai\View\EditUserPage.xaml.cs">
-      <DependentUpon>EditUserPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserNicolai\View\LoginUserPage.xaml.cs">
-      <DependentUpon>LoginUserPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -211,9 +131,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Gasolin.jpg" />
-    <Content Include="Assets\Metallica.jpg" />
-    <Content Include="Assets\RagnarockLogo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -228,53 +145,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EventArsen\View\CreateEventPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EventArsen\View\EditEventPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EventArsen\View\EventPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="QuizVictor\View\EditQuistionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuizVictor\View\EditQuizPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuizVictor\View\PlayQuistionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuizVictor\View\PlayQuizPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuizVictor\View\ResultQuizPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserNicolai\View\CreateUserPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserNicolai\View\EditUserPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserNicolai\View\LoginUserPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -289,9 +162,22 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EventArsen\Assets\" />
-    <Folder Include="QuizVictor\Assets\" />
-    <Folder Include="UserNicolai\Asset\" />
+    <Folder Include="Event - Arsen\Assets\" />
+    <Folder Include="Event - Arsen\Exceptions\" />
+    <Folder Include="Event - Arsen\Model\" />
+    <Folder Include="Event - Arsen\ViewModel\" />
+    <Folder Include="Event - Arsen\View\" />
+    <Folder Include="Persistency\" />
+    <Folder Include="Quiz - Victor\Assets\" />
+    <Folder Include="Quiz - Victor\Exceptions\" />
+    <Folder Include="Quiz - Victor\Model\" />
+    <Folder Include="Quiz - Victor\ViewModel\" />
+    <Folder Include="Quiz - Victor\View\" />
+    <Folder Include="User - Nicolai\Assets\" />
+    <Folder Include="User - Nicolai\Exceptions\" />
+    <Folder Include="User - Nicolai\Model\" />
+    <Folder Include="User - Nicolai\ViewModel\" />
+    <Folder Include="User - Nicolai\View\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
