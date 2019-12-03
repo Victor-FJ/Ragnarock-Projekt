@@ -119,7 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,7 +144,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -156,10 +156,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Model\" />
+    <Folder Include="Event - Arsen\Assets\" />
+    <Folder Include="Event - Arsen\Exceptions\" />
+    <Folder Include="Event - Arsen\Model\" />
+    <Folder Include="Event - Arsen\ViewModel\" />
+    <Folder Include="Event - Arsen\View\" />
     <Folder Include="Persistency\" />
-    <Folder Include="ViewModel\" />
+    <Folder Include="Quiz - Victor\Assets\" />
+    <Folder Include="Quiz - Victor\Exceptions\" />
+    <Folder Include="Quiz - Victor\Model\" />
+    <Folder Include="Quiz - Victor\ViewModel\" />
+    <Folder Include="Quiz - Victor\View\" />
+    <Folder Include="User - Nicolai\Assets\" />
+    <Folder Include="User - Nicolai\Exceptions\" />
+    <Folder Include="User - Nicolai\Model\" />
+    <Folder Include="User - Nicolai\ViewModel\" />
+    <Folder Include="User - Nicolai\View\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
