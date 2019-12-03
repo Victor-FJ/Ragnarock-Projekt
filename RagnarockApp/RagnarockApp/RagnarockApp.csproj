@@ -162,22 +162,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Event - Arsen\Assets\" />
-    <Folder Include="Event - Arsen\Exceptions\" />
-    <Folder Include="Event - Arsen\Model\" />
-    <Folder Include="Event - Arsen\ViewModel\" />
-    <Folder Include="Event - Arsen\View\" />
+    <Folder Include="EventArsen\Assets\" />
+    <Folder Include="EventArsen\Exceptions\" />
+    <Folder Include="EventArsen\Model\" />
+    <Folder Include="EventArsen\ViewModel\" />
+    <Folder Include="EventArsen\View\" />
     <Folder Include="Persistency\" />
-    <Folder Include="Quiz - Victor\Assets\" />
-    <Folder Include="Quiz - Victor\Exceptions\" />
-    <Folder Include="Quiz - Victor\Model\" />
-    <Folder Include="Quiz - Victor\ViewModel\" />
-    <Folder Include="Quiz - Victor\View\" />
-    <Folder Include="User - Nicolai\Assets\" />
-    <Folder Include="User - Nicolai\Exceptions\" />
-    <Folder Include="User - Nicolai\Model\" />
-    <Folder Include="User - Nicolai\ViewModel\" />
-    <Folder Include="User - Nicolai\View\" />
+    <Folder Include="QuizVictor\Assets\" />
+    <Folder Include="QuizVictor\Exceptions\" />
+    <Folder Include="QuizVictor\Model\" />
+    <Folder Include="QuizVictor\ViewModel\" />
+    <Folder Include="QuizVictor\View\" />
+    <Folder Include="UserNicolai\Assets\" />
+    <Folder Include="UserNicolai\Exceptions\" />
+    <Folder Include="UserNicolai\Model\" />
+    <Folder Include="UserNicolai\ViewModel\" />
+    <Folder Include="UserNicolai\View\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
