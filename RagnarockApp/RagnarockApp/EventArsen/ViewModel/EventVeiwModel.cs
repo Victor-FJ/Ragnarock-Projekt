@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.EventArsen.ViewModel
 {
-    class EventViewModel
+    class EventVeiwModel
     {
     }
 }

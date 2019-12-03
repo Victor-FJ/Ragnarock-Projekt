@@ -121,8 +121,9 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
-    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
-    <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
+    <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
+    <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
+    <Compile Include="EventArsen\ViewModel\EventVeiwModel.cs" />
     <Compile Include="EventArsen\View\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
@@ -163,7 +164,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EventArsen\View\CreateEventPage.xaml">
+    <Page Include="EventArsen\View\EditEventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
