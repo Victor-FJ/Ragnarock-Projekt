@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="RagnarockApp.UserNicolai.View.UserPage"
+    x:Class="RagnarockApp.UserNicolai.View.LoginUserPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp.UserNicolai.View"
@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock FontSize="80" Text="Userpage"/>
+
     </Grid>
 </Page>

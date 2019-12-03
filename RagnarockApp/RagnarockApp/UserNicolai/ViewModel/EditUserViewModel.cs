@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.UserNicolai.ViewModel
 {
-    class UserViewModel
+    class EditUserViewModel
     {
     }
 }

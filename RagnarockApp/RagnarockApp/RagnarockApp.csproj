@@ -138,9 +138,14 @@
     </Compile>
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
-    <Compile Include="UserNicolai\ViewModel\UserViewModel.cs" />
-    <Compile Include="UserNicolai\View\UserPage.xaml.cs">
-      <DependentUpon>UserPage.xaml</DependentUpon>
+    <Compile Include="UserNicolai\Model\UserCatalog.cs" />
+    <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
+    <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
+    <Compile Include="UserNicolai\View\EditUserPage.xaml.cs">
+      <DependentUpon>EditUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserNicolai\View\LoginUserPage.xaml.cs">
+      <DependentUpon>LoginUserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +184,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserNicolai\View\UserPage.xaml">
+    <Page Include="UserNicolai\View\EditUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserNicolai\View\LoginUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
