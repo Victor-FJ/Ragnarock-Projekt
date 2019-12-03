@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
@@ -129,9 +130,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuizVictor\View\QuizPage.xaml.cs">
-      <DependentUpon>QuizPage.xaml</DependentUpon>
+    <Compile Include="QuizVictor\Model\Quistion.cs" />
+    <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
+    <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
+    <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
+      <DependentUpon>EditQuizPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
@@ -168,7 +173,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="QuizVictor\View\QuizPage.xaml">
+    <Page Include="QuizVictor\View\EditQuizPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,17 +194,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\" />
     <Folder Include="EventArsen\Assets\" />
     <Folder Include="EventArsen\Exceptions\" />
     <Folder Include="Persistency\" />
     <Folder Include="QuizVictor\Assets\" />
     <Folder Include="QuizVictor\Exceptions\" />
-    <Folder Include="QuizVictor\Model\" />
-    <Folder Include="QuizVictor\ViewModel\" />
     <Folder Include="UserNicolai\Assets\" />
     <Folder Include="UserNicolai\Exceptions\" />
-    <Folder Include="UserNicolai\Model\" />
     <Folder Include="UserNicolai\ViewModel\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

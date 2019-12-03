@@ -51,7 +51,7 @@
                     </StackPanel>
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="RagnarockApp.QuizVictor.View.QuizPage"/>
+                            <core:NavigateToPageAction TargetPage="RagnarockApp.QuizVictor.View.EditQuizPage"/>
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </Button>
