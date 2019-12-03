@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventArsen\Model\Event.cs" />
+    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
+    <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
     <Compile Include="EventArsen\View\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="EventArsen\View\CreateEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EventArsen\View\EventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,8 +192,6 @@
     <Folder Include="Common\" />
     <Folder Include="EventArsen\Assets\" />
     <Folder Include="EventArsen\Exceptions\" />
-    <Folder Include="EventArsen\Model\" />
-    <Folder Include="EventArsen\ViewModel\" />
     <Folder Include="Persistency\" />
     <Folder Include="QuizVictor\Assets\" />
     <Folder Include="QuizVictor\Exceptions\" />
