@@ -143,7 +143,7 @@
     </Compile>
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
-    <Compile Include="UserNicolai\Model\UserCatalog.cs" />
+    <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
     <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
     <Compile Include="UserNicolai\View\EditUserPage.xaml.cs">
