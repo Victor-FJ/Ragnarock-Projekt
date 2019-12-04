@@ -5,13 +5,15 @@
     xmlns:local="using:RagnarockApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="961.101" d:DesignHeight="580.645">
 
+    <Page.DataContext>
+        <local:MainViewModel/>
+    </Page.DataContext>
+
     <Page.Resources>
-        <Style x:Key="MenuButtonStyle" TargetType="Button">
+        <Style x:Key="MenuNavButtonStyle" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Height" Value="50"/>
@@ -19,46 +21,49 @@
         </Style>
     </Page.Resources>
 
-    <SplitView DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="170">
+    <SplitView DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="150" OpenPaneLength="200">
         <SplitView.Pane>
             <StackPanel Background="Gray">
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding LoginUserPage}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock Text="&#xE77B;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
-                        <TextBlock Text="User" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Login User" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="RagnarockApp.UserNicolai.View.UserPage"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
                 </Button>
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditUserPage}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="&#xE899;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
+                        <TextBlock Text="&#xE779;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
+                        <TextBlock Text="Edit User" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EventPage}">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="&#xEC4F;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
                         <TextBlock Text="Event" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="RagnarockApp.EventArsen.View.EventPage"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
                 </Button>
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditEventPage}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="&#xE7FC;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
-                        <TextBlock Text="Quiz" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="&#xE7C4;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
+                        <TextBlock Text="Edit Event" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Click">
-                            <core:NavigateToPageAction TargetPage="RagnarockApp.QuizVictor.View.EditQuizPage"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
+                </Button>
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding PlayQuizPage}">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="&#xE7BE;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
+                        <TextBlock Text="Play Quiz" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditQuizPage}">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="&#xF716;" FontSize="18" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="6"/>
+                        <TextBlock Text="Edit Quiz" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
                 </Button>
             </StackPanel>
         </SplitView.Pane>
         <Grid>
-            <Frame x:Name="MainFrame"/>
+            <Frame Content="{Binding FramePage}"/>
         </Grid>
     </SplitView>
 
