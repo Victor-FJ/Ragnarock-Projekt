@@ -7,9 +7,9 @@ using System.Windows.Input;
 
 namespace RagnarockApp.Common
 {
-    public class RelayCommand : ICommand
+    public class RelayCommandWParam : ICommand
     {
-        private readonly Action _execute;
+        private readonly Action<object> _execute;
         private readonly Func<bool> _canExecute;
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace RagnarockApp.Common
         /// <summary>
         /// Creates a new command that can always execute.
         /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action execute)
+        /// <param name="execute">The execution logic with commandparameter.</param>
+        public RelayCommandWParam(Action<object> execute)
             : this(execute, null)
         {
         }
@@ -29,9 +29,9 @@ namespace RagnarockApp.Common
         /// <summary>
         /// Creates a new command.
         /// </summary>
-        /// <param name="execute">The execution logic.</param>
+        /// <param name="execute">The execution logic with commandparameter.</param>
         /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        public RelayCommandWParam(Action<object> execute, Func<bool> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -59,7 +59,7 @@ namespace RagnarockApp.Common
         /// </param>
         public void Execute(object parameter)
         {
-            _execute();
+            _execute(parameter);
         }
 
         /// <summary>
