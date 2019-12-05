@@ -8,30 +8,30 @@ namespace RagnarockApp.EventArsen.Model
 {
     public class Event
     {
-        public string Name { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
-        public string Factor { get; set; }
+        public string Title { get; set; }
+        public string TimeOfDate { get; set; }
+        public string TimeOfEvent { get; set; }
+        public string EventSubject { get; set; }
 
         public Event()
         {
-            Name = "";
-            Date = "";
-            Time = "";
-            Factor = "";
+            Title = "";
+            TimeOfDate = "";
+            TimeOfEvent = "";
+            EventSubject = "";
         }
 
-        public Event(string name, string date, string time, string factor)
+        public Event(string title, string timeOfDate, string timeOfEvent, string eventSubject)
         {
-            Name = name;
-            Date = date;
-            Time = time;
-            Factor = factor;
+            Title = Title;
+            TimeOfDate = timeOfDate;
+            TimeOfEvent = timeOfEvent;
+            EventSubject = EventSubject;
         }
 
         public override string ToString()
         {
-            return $"{Name} {Date} {Time} {Factor}";
+            return $"{Title} {TimeOfDate} {TimeOfEvent} {EventSubject}";
         }
     }
 }

@@ -21,7 +21,7 @@ namespace RagnarockApp.EventArsen.Model
         private EventManagerSingleton()
         {
             Events = new ObservableCollection<Event>();
-            Events.Add(new Event("Søren", "5/8", "17.00", "Koncert"));
+            Events.Add(new Event("The Beatles", "5/8 - 7/4", "17.00", "Udstilling"));
 
         }
 

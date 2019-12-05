@@ -5,10 +5,17 @@
     xmlns:local="using:RagnarockApp.EventArsen.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RagnarockApp.EventArsen.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.DataContext>
+        <viewModel:EventViewModel></viewModel:EventViewModel>
+    </Page.DataContext>
+    <StackPanel>
         <TextBlock FontSize="80" Text="Eventpage"/>
-    </Grid>
+        <StackPanel>
+            <ListView ItemsSource="{Binding Events.Events}"/>
+        </StackPanel>
+    </StackPanel>
 </Page>
