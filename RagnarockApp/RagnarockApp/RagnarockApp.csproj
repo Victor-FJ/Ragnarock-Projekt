@@ -125,6 +125,9 @@
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
+    <Compile Include="EventArsen\View\EditEventPage.xaml.cs">
+      <DependentUpon>EditEventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventArsen\View\EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>

@@ -31,11 +31,9 @@ namespace RagnarockApp
         public Page LoginUserPage
         { get { return new LoginUserPage(); } }
         public Page EditEventPage
-        { get { 
-                return new EditEventPage(); } }
+        { get { return new EditEventPage(); } }
         public Page EventPage
-        { get { 
-                return new EventPage(); } }
+        { get { return new EventPage(); } }
         public Page EditQuizPage
         { get { return new EditQuizPage(); } }
         public Page PlayQuizPage

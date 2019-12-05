@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-        <viewModel:EventViewModel></viewModel:EventViewModel>
+        <viewModel:EventViewModel/>
     </Page.DataContext>
     <StackPanel>
         <TextBlock FontSize="80" Text="Eventpage"/>
