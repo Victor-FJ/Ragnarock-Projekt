@@ -52,5 +52,20 @@ namespace RagnarockApp.QuizVictor.Model
                 _answer = value;
             }
         }
+
+        public Quistion()
+        {
+            _theQuistion = "Is this the default quistion?";
+            _answerOptions = new string[] {"A: ...", "B: ...", "C: ...", "D: ..."};
+            Answer = 0;
+        }
+
+        public Quistion(string theQuistion, string[] answerOptions, int answer) 
+            : this()
+        {
+            TheQuistion = theQuistion;
+            AnswerOptions = answerOptions;
+            Answer = answer;
+        }
     }
 }
