@@ -5,10 +5,38 @@
     xmlns:local="using:RagnarockApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:RagnarockApp.EventArsen.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.DataContext>
+        <viewModel:EditEventViewModel></viewModel:EditEventViewModel>
+    </Page.DataContext>
 
-    </Grid>
+    <StackPanel>
+        <TextBlock FontSize="80" Text="EditEventPage"/>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" TextWrapping="Wrap" Text="Title"/>
+                    <TextBox x:Name="Title" Text="{Binding SelcetedEvent.Title, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Dato"/>
+                    <TextBox x:Name="Dato" Text="{Binding SelcetedEvent.TimeOfDate, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Tidpunkt"/>
+                    <TextBox x:Name="Tidpunkt" Text="{Binding SelcetedEvent.TimeOfEvent, Mode=TwoWay}" Height="48" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Subjekt"/>
+                    <TextBox x:Name="Subjekt" Text="{Binding SelcetedEvent.EventSubject, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Add" Command="{Binding AddCommand}"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Page>
