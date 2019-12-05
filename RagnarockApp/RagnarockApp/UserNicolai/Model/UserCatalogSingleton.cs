@@ -38,5 +38,6 @@ namespace RagnarockApp.UserNicolai.Model
         {
             Users.RemoveAt(index);
         }
+
     }
 }

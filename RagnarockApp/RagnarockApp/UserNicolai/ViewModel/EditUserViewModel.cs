@@ -68,7 +68,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
         }
 
 
-        //Ation
+        //Action
 
         public void AddUser()
         {
@@ -80,5 +80,19 @@ namespace RagnarockApp.UserNicolai.ViewModel
             UserCatalog.RemoveAt(SelectedIndex);
         }
 
+        //Func
+
+        public bool SelectedIndexIsNotSet()
+        {
+            return SelectedIndex != -1;
+        }
+
+        //Constructor
+
+        public EditUserViewModel()
+        {
+            _addCommand = new RelayCommand(AddUser);
+            _removeCommand = new RelayCommand(RemoveUser,SelectedIndexIsNotSet);
+        }
     }
 }
