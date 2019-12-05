@@ -6,9 +6,82 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="832.75" d:DesignHeight="579.25">
 
-    <Grid>
-        <TextBlock FontSize="80" Text="Quizpage"/>
+    <Page.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Background" Value="CornflowerBlue"/>
+        </Style>
+        <Style x:Key="ErrorTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Width" Value="60"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="DarkBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView Background="LightBlue" ItemsSource="{Binding StudentCatalog.Students}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}" Grid.RowSpan="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="3,6,3,6">
+                        <TextBlock Text="Quiz Navn" Style="{StaticResource TextBlockStyle}"/>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">
+                            <Run Text="Antal Spørgsmål: "/>
+                            <Run Text="{Binding No}"/>
+                            <Run Text="   Oprettelses Dato: "/>
+                            <Run Text="{Binding Name}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Spacing="10" VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,15" Text="Tilføj Quiz" Style="{StaticResource TextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                <TextBox Width="200"/>
+                <TextBlock Text="" Style="{StaticResource ErrorTextBlockStyle}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Opret Quiz" Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,15" Text="Modificer Quiz" Style="{StaticResource TextBlockStyle}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                <TextBox Width="200"/>
+                <TextBlock Text="" Style="{StaticResource ErrorTextBlockStyle}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15">
+                <Button Content="Ret Navn" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Ret Quiz" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Slet Quiz" Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
