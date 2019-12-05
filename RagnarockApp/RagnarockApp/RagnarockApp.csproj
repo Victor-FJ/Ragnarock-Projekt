@@ -138,6 +138,7 @@
     <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
     <Compile Include="QuizVictor\Exceptions\QuistionPropEmptyException.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
+    <Compile Include="QuizVictor\Model\Quiz.cs" />
     <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\PlayQuizViewModel.cs" />

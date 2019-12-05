@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.QuizVictor.Model
 {
-    class QuizPlayer
+    public class QuizPlayer
     {
+        private static QuizPlayer _instance = new QuizPlayer();
+        public static QuizPlayer Instance
+        { get { return _instance; } }
+
+        public List<Quiz> Quizzes { get; set; }
+
+        private QuizPlayer()
+        {
+            Quizzes = new List<Quiz>();
+        }
+
+        
     }
 }
