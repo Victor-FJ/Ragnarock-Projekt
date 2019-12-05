@@ -1,46 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using RagnarockApp.Annotations;
+using RagnarockApp.Common;
+using RagnarockApp.UserNicolai.Model;
 
 namespace RagnarockApp.UserNicolai.ViewModel
 {
-    class EditUserViewModel
+    class EditUserViewModel: INotifyPropertyChanged
     {
-        //Instance field
-        private string _name;
-        private int _id;
-        private bool _administrator;
+        //Instance
+        private User _selectedUser;
+        private int _selectedIndex;
+        private ICommand _removeCommand;
+        private ICommand _addCommand;
 
-        //Properties
-        public string Name
+
+        //Property
+        public static UserCatalogSingleton UserCatalog { get; set; }
+
+        public User SelectedUser
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _selectedUser; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand AddCommand
+        {
+            get { return _addCommand; }
+            set { _addCommand = value; }
+        }
+
+        public ICommand RemoveCommand
+        {
+            get { return _removeCommand; }
+            set { _removeCommand = value; }
         }
 
 
-        public int Id
+        public int SelectedIndex
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _selectedIndex;}
+            set
+            {
+                SelectedIndex = value;
+                OnPropertyChanged();
+                ((RelayCommand) _removeCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)_addCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
-        public bool Administrator
+        //Ation
+
+        public void AddUser()
         {
-            get { return _administrator; }
-            set { _administrator = value; }
+            UserCatalog.AddUser(SelectedUser);
         }
 
-
-        //Constructor
-        public EditUserViewModel(string name, int id, bool administrator)
+        public void RemoveUser()
         {
-            _name = name;
-            _id = id;
-            _administrator = administrator;
+            UserCatalog.RemoveAt(SelectedIndex);
         }
+
     }
 }

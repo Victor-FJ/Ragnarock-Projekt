@@ -130,6 +130,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
@@ -144,8 +145,8 @@
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
-    <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
+    <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
     <Compile Include="UserNicolai\View\EditUserPage.xaml.cs">
       <DependentUpon>EditUserPage.xaml</DependentUpon>
     </Compile>
