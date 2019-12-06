@@ -10,12 +10,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-        <viewModel:EventViewModel/>
+        <viewModel:EditEventViewModel/>
     </Page.DataContext>
     <StackPanel>
         <TextBlock FontSize="80" Text="Eventpage"/>
-        <StackPanel>
-            <ListView ItemsSource="{Binding Events.Events}"/>
+        <StackPanel Orientation="Horizontal">
+            <ListView ItemsSource="{Binding Events.Events}">
+            </ListView>
         </StackPanel>
     </StackPanel>
 </Page>

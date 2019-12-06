@@ -12,29 +12,44 @@
     <Page.DataContext>
         <viewModel:EditEventViewModel/>
     </Page.DataContext>
-
+    
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="80" TextWrapping="Wrap" Text="Title"/>
-                <TextBox x:Name="Title" Text="{Binding SelcetedEvent.Title, Mode=TwoWay}" Height="46" Width="217"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="80" Text="Dato"/>
-                <TextBox x:Name="Dato" Text="{Binding SelcetedEvent.TimeOfDate, Mode=TwoWay}" Height="46" Width="217"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="80" Text="Tidpunkt"/>
-                <TextBox x:Name="Tidpunkt" Text="{Binding SelcetedEvent.TimeOfEvent, Mode=TwoWay}" Height="48" Width="217"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="80" Text="Subjekt"/>
-                <TextBox x:Name="Subjekt" Text="{Binding SelcetedEvent.EventSubject, Mode=TwoWay}" Height="46" Width="217"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Add" Command="{Binding AddCommand}"></Button>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" TextWrapping="Wrap" Text="Title" Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBox x:Name="Title" Text="{Binding SelectedEvent.Title, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Dato" Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBox x:Name="Dato" Text="{Binding SelectedEvent.TimeOfDate, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Tidpunkt" Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBox x:Name="Tidpunkt" Text="{Binding SelectedEvent.TimeOfEvent, Mode=TwoWay}" Height="48" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="80" Text="Emne" Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBox x:Name="Emne" Text="{Binding SelectedEvent.EventSubject, Mode=TwoWay}" Height="46" Width="217"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Add" Command="{Binding AddCommand}" Margin="5,5,5,5"/>
+                    <Button Content="Remove" Command="{Binding RemoveCommand}" Margin="5,5,5,5"/>
+                    <Button Content="Update" Command="{Binding UpdateCommand}" Margin="5,5,5,5"/>
+                </StackPanel>
         </StackPanel>
-        <TextBlock Text="Halløj med dig" FontSize="100"/>
+        
+        <ListView ItemsSource="{Binding Events.Events}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" Margin="5,5,5,5"/>
+                        <TextBlock Text="{Binding TimeOfDate}" Margin="5,5,5,5"/>
+                        <TextBlock Text="{Binding TimeOfEvent}" Margin="5,5,5,5"/>
+                        <TextBlock Text="{Binding EventSubject}" Margin="5,5,5,5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
     </StackPanel>
 </Page>
