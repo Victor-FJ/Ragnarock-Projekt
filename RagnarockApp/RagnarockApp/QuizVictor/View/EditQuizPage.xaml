@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="832.75" d:DesignHeight="579.25">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="500">
 
     <Page.DataContext>
         <viewModel:EditQuizViewModel/>
@@ -49,7 +49,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizPlayer.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
             <ListView.ItemTemplate>
@@ -67,9 +67,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Spacing="10" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,15" Text="Tilføj Quiz" Style="{StaticResource TextBlockStyle}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
                 <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                 <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
                 <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
@@ -78,9 +78,9 @@
                 <Button Content="Opret Quiz" Command="{Binding CreateQuizCommand}" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,15" Text="Modificer Quiz" Style="{StaticResource TextBlockStyle}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
                 <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                 <TextBox Width="200" Height="32" Text="{Binding QuizNameToEdit, Mode=TwoWay}" IsEnabled="{Binding EnableEdit}"/>
                 <TextBlock Text="{Binding ErrorToEdit}" Style="{StaticResource ErrorTextBlockStyle}"/>

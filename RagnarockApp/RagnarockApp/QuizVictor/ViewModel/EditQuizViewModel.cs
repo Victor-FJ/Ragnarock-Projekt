@@ -10,6 +10,7 @@ using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.QuizVictor.Exceptions;
 using RagnarockApp.QuizVictor.Model;
+using RagnarockApp.QuizVictor.View;
 
 namespace RagnarockApp.QuizVictor.ViewModel
 {
@@ -79,6 +80,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
             try
             {
                 QuizPlayer.CreateQuiz(QuizNameToCreate);
+                //Goto new page
             }
             catch (ValueEmptyException exception)
             {
@@ -94,11 +96,14 @@ namespace RagnarockApp.QuizVictor.ViewModel
             }
         }
 
-        public void ModifyName()
+        public async void ModifyName()
         {
             try
             {
-                QuizPlayer.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit);
+                QuizPlayer.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
+                if (await MessageDialogHelper.ShowWInput($"Are you sure you want to change the name of the quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Change Name?"))
+                    QuizPlayer.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
+                MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
             }
             catch (ValueEmptyException exception)
             {
@@ -116,12 +121,16 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public void ModifyQuiz()
         {
-
+            QuizPlayer.MarkedQuiz = SelectedQuiz;
+            //Goto new page
         }
 
-        public void DeleteQuiz()
+        public async void DeleteQuiz()
         {
-
+            if (await MessageDialogHelper.ShowWInput($"Are you sure you want to delete the quiz?\n({SelectedQuiz.QuizName})", "Delete quiz?"))
+                QuizPlayer.DeleteQuiz(SelectedQuiz.QuizName, true);
+            MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
+            OnPropertyChanged(nameof(ErrorToEdit));
         }
 
 

@@ -34,6 +34,8 @@ namespace RagnarockApp.Common
             MessageDialog dialog = new MessageDialog(content, title);
             dialog.Commands.Add(new UICommand("Yes"));
             dialog.Commands.Add(new UICommand("No"));
+            dialog.DefaultCommandIndex = 1;
+            dialog.CancelCommandIndex = 1;
             IUICommand result = await dialog.ShowAsync();
             return result.Label == "Yes";
         }
