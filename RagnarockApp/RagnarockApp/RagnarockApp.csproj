@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Common\CountListConverter.cs" />
     <Compile Include="Common\DateTimeOffsetToStringConverter.cs" />
+    <Compile Include="Common\MessageDialogHelper.cs" />
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
