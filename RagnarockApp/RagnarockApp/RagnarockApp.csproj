@@ -161,7 +161,7 @@
     <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserNicolai\Exeptions\AddExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
