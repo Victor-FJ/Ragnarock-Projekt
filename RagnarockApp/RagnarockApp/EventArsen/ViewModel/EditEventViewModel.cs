@@ -16,11 +16,7 @@ namespace RagnarockApp.EventArsen.ViewModel
     {
         public EventManagerSingleton Events { get; set; }
 
-        private EventManagerSingleton _eventManagerSingleton;
-
-
         private Event _selectedEvent;
-
         public Event SelectedEvent
         {
             get { return _selectedEvent; }
@@ -32,63 +28,25 @@ namespace RagnarockApp.EventArsen.ViewModel
                     _selectedEvent = new Event();
                 }
                 OnPropertyChanged();
-                ((RelayCommand)_addCommand).RaiseCanExecuteChanged();
-                ((RelayCommand)_removeCommand).RaiseCanExecuteChanged();
-                ((RelayCommand)_updateCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)CreateEventCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)RemoveEventCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)UpdateEventCommand).RaiseCanExecuteChanged();
             }
         }
 
         public int SelectedIndex { get; set; }
 
-        private ICommand _removeCommand;
-
-        public ICommand RemoveCommand
-        {
-            get { return _removeCommand; }
-            set { _removeCommand = value; }
-        }
-
-        private ICommand _updateCommand;
-
-        public ICommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { _updateCommand = value; }
-        }
-
-        private ICommand _addCommand;
-
-       
-
-        public ICommand AddCommand
-        {
-            get { return _addCommand; }
-            set { _addCommand = value; }
-        }
+        public ICommand CreateEventCommand { get; set; }
+        public ICommand RemoveEventCommand { get; set; }
+        public ICommand UpdateEventCommand { set; get; }
+        
 
         public EditEventViewModel()
         {
             Events=EventManagerSingleton.Instance;
-            _eventManagerSingleton = EventManagerSingleton.Instance;
-            _removeCommand = new RelayCommand(RemoveEvent, SelectedIndexNotSet);
-            _updateCommand = new RelayCommand(UpdateEvent, SelectedIndexNotSet);
-            _addCommand = new RelayCommand(Add, EventIsSelected);
-            SelectedEvent = new Event();
-        }
-
-        public bool SelectedIndexNotSet()
-        {
-            return SelectedIndex != -1;
-        }
-
-        public void RemoveEvent()
-        {
-            _eventManagerSingleton.RemoveAt(SelectedIndex);
-        }
-
-        public void UpdateEvent()
-        {
-            _eventManagerSingleton.Update(SelectedIndex, SelectedEvent);
+            CreateEventCommand = new RelayCommand(CreateEvent, EventIsSelected);
+            RemoveEventCommand = new RelayCommand(RemoveEvent, SelectedIndexNotSet);
+            UpdateEventCommand = new RelayCommand(UpdateEvent, SelectedIndexNotSet);
         }
 
         public bool EventIsSelected()
@@ -96,9 +54,24 @@ namespace RagnarockApp.EventArsen.ViewModel
             return SelectedEvent != null;
         }
 
-        public void Add()
+        public bool SelectedIndexNotSet()
         {
-            _eventManagerSingleton.Add(SelectedEvent);
+            return SelectedIndex != -1;
+        }
+
+        public void CreateEvent()
+        {
+            Events.Create(SelectedEvent);
+        }
+
+        public void RemoveEvent()
+        {
+            Events.RemoveAt(SelectedIndex);
+        }
+
+        public void UpdateEvent()
+        {
+            Events.Update(SelectedIndex, SelectedEvent);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
