@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,31 +19,35 @@ namespace RagnarockApp
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private readonly NavigationService _navigationService;
+
         private static MainViewModel _instance;
         public static MainViewModel Instance
         { get { return _instance; } }
 
-        public Page FramePage { get; set; }
-
         #region Pages
 
-        public Page EditUserPage
-        { get { return new EditUserPage(); } }
-        public Page LoginUserPage
-        { get { return new LoginUserPage(); } }
-        public Page EditEventPage
-        { get { return new EditEventPage(); } }
-        public Page EventPage
-        { get { return new EventPage(); } }
-        public Page EditQuizPage
-        { get { return new EditQuizPage(); } }
-        public Page PlayQuizPage
-        { get { return new PlayQuizPage(); } }
+        public Type EditUserPage
+        { get { return typeof(EditUserPage); } }
+        public Type LoginUserPage
+        { get { return typeof(LoginUserPage); } }
+        public Type EditEventPage
+        { get { return typeof(EditEventPage); } }
+        public Type EventPage
+        { get { return typeof(EventPage); } }
+        public Type EditQuizPage
+        { get { return typeof(EditQuizPage); } }
+        public Type PlayQuizPage
+        { get { return typeof(PlayQuizPage); } }
 
         #endregion
 
         public ICommand NavToPageCommand { get; set; }
 
+        public MainViewModel(NavigationService navService) : this()
+        {
+            _navigationService = navService;
+        }
         public MainViewModel()
         {
             _instance = this;
@@ -51,10 +56,14 @@ namespace RagnarockApp
 
         #region MainHandler
 
-        public void NavigateToPage(object page)
+        public void NavigateToPage(object pageType)
         {
-            FramePage = (Page)page;
-            OnPropertyChanged(nameof(FramePage));
+            _navigationService.Navigate((Type) pageType);
+        }
+
+        public void NavigateBack()
+        {
+            _navigationService.GoBack();
         }
 
         #endregion

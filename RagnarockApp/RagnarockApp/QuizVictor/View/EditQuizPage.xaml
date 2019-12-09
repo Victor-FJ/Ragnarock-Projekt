@@ -3,10 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp.QuizVictor.View"
+    xmlns:viewModel="using:RagnarockApp.QuizVictor.ViewModel"
+    xmlns:common="using:RagnarockApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="832.75" d:DesignHeight="579.25">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="500">
+
+    <Page.DataContext>
+        <viewModel:EditQuizViewModel/>
+    </Page.DataContext>
 
     <Page.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
@@ -21,7 +27,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Width" Value="85"/>
-            <Setter Property="Background" Value="CornflowerBlue"/>
+            <Setter Property="Background" Value="DodgerBlue"/>
         </Style>
         <Style x:Key="ErrorTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="10"/>
@@ -32,55 +38,57 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Width" Value="60"/>
         </Style>
+        <common:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
+        <common:CountListConverter x:Key="CountListConverter"/>
     </Page.Resources>
 
-    <Grid Background="DarkBlue">
+    <Grid Background="#FF1A1A74">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Background="LightBlue" ItemsSource="{Binding StudentCatalog.Students}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}" Grid.RowSpan="2">
+        <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizPlayer.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="3,6,3,6">
-                        <TextBlock Text="Quiz Navn" Style="{StaticResource TextBlockStyle}"/>
-                        <TextBlock Style="{StaticResource TextBlockStyle}">
+                        <TextBlock Text="{Binding QuizName}" FontSize="24"/>
+                        <TextBlock>
                             <Run Text="Antal Spørgsmål: "/>
-                            <Run Text="{Binding No}"/>
+                            <Run Text="{Binding Quistions, Converter={StaticResource CountListConverter}}"/>
                             <Run Text="   Oprettelses Dato: "/>
-                            <Run Text="{Binding Name}"/>
+                            <Run Text="{Binding CreatedDate, Converter={StaticResource DateTimeOffsetToStringConverter}}"/>
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Spacing="10" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,15" Text="Tilføj Quiz" Style="{StaticResource TextBlockStyle}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
                 <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                <TextBox Width="200"/>
-                <TextBlock Text="" Style="{StaticResource ErrorTextBlockStyle}"/>
+                <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
+                <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Opret Quiz" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Opret Quiz" Command="{Binding CreateQuizCommand}" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,15" Text="Modificer Quiz" Style="{StaticResource TextBlockStyle}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
                 <TextBlock Text="Quiz Navn" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                <TextBox Width="200"/>
-                <TextBlock Text="" Style="{StaticResource ErrorTextBlockStyle}"/>
+                <TextBox Width="200" Height="32" Text="{Binding QuizNameToEdit, Mode=TwoWay}" IsEnabled="{Binding EnableEdit}"/>
+                <TextBlock Text="{Binding ErrorToEdit}" Style="{StaticResource ErrorTextBlockStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15">
-                <Button Content="Ret Navn" Style="{StaticResource ButtonStyle}"/>
-                <Button Content="Ret Quiz" Style="{StaticResource ButtonStyle}"/>
-                <Button Content="Slet Quiz" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Ret Navn" Command="{Binding ModifyNameCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Ret Quiz" Command="{Binding ModifyQuizCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Slet Quiz" Command="{Binding DeleteQuizCommand}" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

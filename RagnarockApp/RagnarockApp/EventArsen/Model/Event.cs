@@ -23,10 +23,10 @@ namespace RagnarockApp.EventArsen.Model
 
         public Event(string title, string timeOfDate, string timeOfEvent, string eventSubject)
         {
-            Title = Title;
+            Title = title;
             TimeOfDate = timeOfDate;
             TimeOfEvent = timeOfEvent;
-            EventSubject = EventSubject;
+            EventSubject = eventSubject;
         }
 
         public override string ToString()

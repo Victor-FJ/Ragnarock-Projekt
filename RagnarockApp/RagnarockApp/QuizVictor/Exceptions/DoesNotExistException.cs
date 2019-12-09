@@ -8,11 +8,11 @@ namespace RagnarockApp.QuizVictor.Exceptions
 {
     /// <summary>
     /// This exception is thrown in case it is attempted to
-    /// set a quistion property to be empty
+    /// find a object that does not exist
     /// </summary>
-    public class QuistionPropEmptyException : Exception
+    public class DoesNotExistException : Exception
     {
-        public QuistionPropEmptyException(string message) 
+        public DoesNotExistException(string message) 
             : base(message)
         {
         }

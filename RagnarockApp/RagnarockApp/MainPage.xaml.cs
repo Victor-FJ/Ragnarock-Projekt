@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using RagnarockApp.Common;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -12,6 +13,8 @@ namespace RagnarockApp
         public MainPage()
         {
             this.InitializeComponent();
+            MainViewModel viewModel = new MainViewModel(new NavigationService(MainPageFrame));
+            this.DataContext = viewModel;
         }
     }
 }
