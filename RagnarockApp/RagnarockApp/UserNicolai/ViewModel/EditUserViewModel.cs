@@ -15,14 +15,14 @@ namespace RagnarockApp.UserNicolai.ViewModel
     class EditUserViewModel: INotifyPropertyChanged
     {
         //Instance
-        private User _selectedUser;
+        private User _selectedUser = new User();
         private int _selectedIndex;
         private ICommand _removeCommand;
         private ICommand _addCommand;
 
 
         //Property
-        public static UserCatalogSingleton UserCatalog { get; set; }
+        public UserCatalogSingleton UserCatalog { get; set; }
 
         public User SelectedUser
         {
@@ -30,6 +30,10 @@ namespace RagnarockApp.UserNicolai.ViewModel
             set
             {
                 _selectedUser = value;
+                if (value == null)
+                {
+                    _selectedUser = new User();
+                }
                 OnPropertyChanged();
             }
         }
@@ -52,7 +56,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
             get { return _selectedIndex;}
             set
             {
-                SelectedIndex = value;
+                _selectedIndex = value;
                 OnPropertyChanged();
                 ((RelayCommand) _removeCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)_addCommand).RaiseCanExecuteChanged();
@@ -93,6 +97,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
         {
             _addCommand = new RelayCommand(AddUser);
             _removeCommand = new RelayCommand(RemoveUser,SelectedIndexIsNotSet);
+            UserCatalog = UserCatalogSingleton.UserInstants;
         }
     }
 }
