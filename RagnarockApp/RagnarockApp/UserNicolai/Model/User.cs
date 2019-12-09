@@ -12,6 +12,8 @@ namespace RagnarockApp.UserNicolai.Model
         private string _name;
         private int _id;
         private bool _administrator;
+        private string _userName;
+        private int _code;
 
         //Properties
         public string Name
@@ -31,16 +33,37 @@ namespace RagnarockApp.UserNicolai.Model
         public bool Administrator
         {
             get { return _administrator; }
-            set { _administrator = value; }
+            set
+            {
+                _administrator = value;
+            }
+        }
+
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value; }
+        }
+
+        public int Code
+        {
+            get { return _code;}
+            set { _code = value; }
         }
 
 
         //Constructor
-        public User(string name, int id, bool administrator)
+        public User()
+        {
+        }
+
+        public User(string name, int id, bool administrator, string userName, int code)
         {
             _name = name;
             _id = id;
             _administrator = administrator;
+            _userName = userName;
+            _code = code;
         }
     }
 }

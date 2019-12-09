@@ -8,7 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="Halløj med dig 2" FontSize="100"/>
-    </Grid>
+
+    <StackPanel Orientation="Vertical">
+
+        <Button Content="Login" FontSize="30"></Button>
+    </StackPanel>
+
 </Page>
