@@ -130,6 +130,9 @@
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
+    <Compile Include="EventArsen\View\CreateEventPage.xaml.cs">
+      <DependentUpon>CreateEventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventArsen\View\EditEventPage.xaml.cs">
       <DependentUpon>EditEventPage.xaml</DependentUpon>
     </Compile>
@@ -162,7 +165,7 @@
     <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserNicolai\Exeptions\AddExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="EventArsen\View\CreateEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EventArsen\View\EditEventPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

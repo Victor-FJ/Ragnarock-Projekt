@@ -40,7 +40,7 @@ namespace RagnarockApp.UserNicolai.Model
              Validate(newUser);
              Users.Add(newUser);
          }
-         catch (AddExeptions adex)
+         catch (AddExceptions adex)
          {
              MessageDialogHelper.Show( adex.Message, "Du har fået en AddExeption");
          }
@@ -62,8 +62,9 @@ namespace RagnarockApp.UserNicolai.Model
         {
             if (userAdd.Id.ToString().Length != 6)
             {
-                throw new AddExeptions("Der er ikke de rette antal cifre. Du har skrevet " + userAdd.Id.ToString().Length + " cifre");
+                throw new AddExceptions("Der er ikke de rette antal cifre. Du har skrevet " + userAdd.Id.ToString().Length + " cifre");
             }
         }
+
     }
 }

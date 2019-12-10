@@ -7,11 +7,37 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        viewModel: EditUserViewModel
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"></Setter>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="Width" Value="135"></Setter>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Page.Resources>
 
+    <Grid Background="DarkBlue">
+        <StackPanel Background="DarkBlue" Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Text="BrugerNavn" Foreground="White"></TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedUser.UserName}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Kode" Foreground="White"></TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedUser.Code}"></TextBox>
+            </StackPanel>
 
-    <StackPanel Orientation="Vertical">
-
-        <Button Content="Login" FontSize="30"></Button>
-    </StackPanel>
+            <Button Content="Login" FontSize="30" Foreground="Black" Background="LightBlue"></Button>
+        </StackPanel>
+    </Grid>
 
 </Page>
