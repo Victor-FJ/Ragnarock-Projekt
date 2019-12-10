@@ -4,13 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp.UserNicolai.View"
     xmlns:viewModel="using:RagnarockApp.UserNicolai.ViewModel"
+    xmlns:converter="using:RagnarockApp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <Page.DataContext>
         <viewModel:EditUserViewModel/>
     </Page.DataContext>
+    
     <Page.Resources>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Width" Value="200"></Setter>
@@ -24,6 +27,8 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
+        <converter:AdminConverter x:Key="AdminConverter"/>
+        <converter:SomeConverter x:Key="SomeConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -64,8 +69,7 @@
                         <StackPanel Orientation="Horizontal" Margin="10" Spacing="15">
                             <TextBlock Text="{Binding Name}" FontSize="30"></TextBlock>
                             <TextBlock Text="{Binding Id}" FontSize="30"></TextBlock>
-                            <TextBlock Text="{Binding Administrator}"></TextBlock>
-
+                            <TextBlock Text="{Binding Name, Converter={StaticResource SomeConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

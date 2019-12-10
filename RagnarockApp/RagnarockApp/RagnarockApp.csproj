@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AdminConverter.cs" />
     <Compile Include="Converters\CountListConverter.cs" />
     <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
     <Compile Include="Converters\IndexOfArrayConverter.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
+    <Compile Include="Converters\SomeConverter.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
