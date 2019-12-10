@@ -8,7 +8,7 @@ namespace RagnarockApp.QuizVictor.Exceptions
 {
     /// <summary>
     /// This exception is thrown in case it is attempted to
-    /// set the quistion of a Quistion to a value without the '?'
+    /// set the quistion of a TheQuistion to a value without the '?'
     /// </summary>
     public class IsNotQuistionException : Exception
     {

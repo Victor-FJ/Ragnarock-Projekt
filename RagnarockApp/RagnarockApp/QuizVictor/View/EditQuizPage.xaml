@@ -7,6 +7,7 @@
     xmlns:common="using:RagnarockApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:RagnarockApp.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="500">
 
@@ -38,8 +39,8 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Width" Value="60"/>
         </Style>
-        <common:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
-        <common:CountListConverter x:Key="CountListConverter"/>
+        <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
+        <converters:CountListConverter x:Key="CountListConverter"/>
     </Page.Resources>
 
     <Grid Background="#FF1A1A74">
@@ -51,7 +52,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizPlayer.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
+        <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizPlayerInstance.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="3,6,3,6">

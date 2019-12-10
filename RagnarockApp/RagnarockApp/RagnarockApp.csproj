@@ -119,8 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\CountListConverter.cs" />
-    <Compile Include="Common\DateTimeOffsetToStringConverter.cs" />
+    <Compile Include="Converters\CountListConverter.cs" />
+    <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
+    <Compile Include="Converters\IndexOfArrayConverter.cs" />
     <Compile Include="Common\MessageDialogHelper.cs" />
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
@@ -148,7 +149,7 @@
     <Compile Include="QuizVictor\Exceptions\DoesNotExistException.cs" />
     <Compile Include="QuizVictor\Exceptions\IncorrectSizeException.cs" />
     <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
-    <Compile Include="QuizVictor\Exceptions\NameAlreadyExistException.cs" />
+    <Compile Include="QuizVictor\Exceptions\ValueAlreadyExistException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueEmptyException.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\Quiz.cs" />
@@ -166,7 +167,9 @@
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\UserNameException.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />

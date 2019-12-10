@@ -26,5 +26,6 @@ namespace RagnarockApp.UserNicolai.View
         {
             this.InitializeComponent();
         }
+
     }
 }

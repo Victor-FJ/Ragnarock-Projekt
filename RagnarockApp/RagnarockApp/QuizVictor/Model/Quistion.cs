@@ -10,6 +10,7 @@ namespace RagnarockApp.QuizVictor.Model
     public class Quistion
     {
         private string _theQuistion;
+        private string _hint;
         private string[] _answerOptions;
         private int _answer;
 
@@ -25,7 +26,19 @@ namespace RagnarockApp.QuizVictor.Model
                 _theQuistion = value;
             }
         }
-        
+
+        public string Hint
+        {
+            get { return _hint; }
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ValueEmptyException("The hint has to include some text");
+                _hint = value;
+            }
+        }
+
+
         public string[] AnswerOptions
         {
             get { return _answerOptions; }
@@ -36,8 +49,13 @@ namespace RagnarockApp.QuizVictor.Model
                 if (value.Length != 4)
                     throw new IncorrectSizeException("There has to be exactly 4 answers options");
                 for (int i = 0; i < value.Length; i++)
+                {
                     if (String.IsNullOrWhiteSpace(value[i]))
-                        throw new ValueEmptyException($"The {i}. answer option has to include some text");
+                        throw new ValueEmptyException($"The {i + 1}. answer option has to include some text");
+                    for (int j = 0; j < i; j++)
+                        if (value[i] == value[j])
+                            throw new ValueAlreadyExistException($"The {i + 1}. answer option cannot be the same as the {j + 1}.");
+                }
                 _answerOptions = value;
             }
         }
@@ -57,13 +75,14 @@ namespace RagnarockApp.QuizVictor.Model
         {
             _theQuistion = "Is this the default quistion?";
             _answerOptions = new string[] {"A: ...", "B: ...", "C: ...", "D: ..."};
-            Answer = 0;
+            _hint = "A hint";
         }
 
-        public Quistion(string theQuistion, string[] answerOptions, int answer) 
+        public Quistion(string theQuistion, string hint, string[] answerOptions, int answer) 
             : this()
         {
             TheQuistion = theQuistion;
+            Hint = hint;
             AnswerOptions = answerOptions;
             Answer = answer;
         }
