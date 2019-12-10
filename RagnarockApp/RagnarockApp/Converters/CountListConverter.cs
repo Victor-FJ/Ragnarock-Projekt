@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-using Newtonsoft.Json;
-using RagnarockApp.QuizVictor.Model;
 
-namespace RagnarockApp.Common
+namespace RagnarockApp.Converters
 {
     public class CountListConverter : IValueConverter
     {
@@ -16,8 +10,6 @@ namespace RagnarockApp.Common
         {
             // The value parameter is the data from the source object.
             IList list = (IList)value;
-
-            //List<object> list = JsonConvert.DeserializeObject<List<object>>(JsonConvert.SerializeObject(value));
             return list.Count;
         }
 
