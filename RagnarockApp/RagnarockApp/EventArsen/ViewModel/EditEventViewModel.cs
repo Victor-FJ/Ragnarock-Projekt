@@ -9,6 +9,7 @@ using RagnarockApp.EventArsen.Model;
 using System.Windows.Input;
 using RagnarockApp.Common;
 using RagnarockApp.Annotations;
+using RagnarockApp.EventArsen.View;
 
 namespace RagnarockApp.EventArsen.ViewModel
 {
@@ -28,7 +29,7 @@ namespace RagnarockApp.EventArsen.ViewModel
                     _selectedEvent = new Event();
                 }
                 OnPropertyChanged();
-                ((RelayCommand)CreateEventCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)GotoEventCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)RemoveEventCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)UpdateEventCommand).RaiseCanExecuteChanged();
             }
@@ -36,7 +37,7 @@ namespace RagnarockApp.EventArsen.ViewModel
 
         public int SelectedIndex { get; set; }
 
-        public ICommand CreateEventCommand { get; set; }
+        public ICommand GotoEventCommand { get; set; }
         public ICommand RemoveEventCommand { get; set; }
         public ICommand UpdateEventCommand { set; get; }
         
@@ -44,24 +45,20 @@ namespace RagnarockApp.EventArsen.ViewModel
         public EditEventViewModel()
         {
             Events=EventManagerSingleton.Instance;
-            CreateEventCommand = new RelayCommand(CreateEvent, EventIsSelected);
+            GotoEventCommand = new RelayCommand(GotEventPage);
             RemoveEventCommand = new RelayCommand(RemoveEvent, SelectedIndexNotSet);
             UpdateEventCommand = new RelayCommand(UpdateEvent, SelectedIndexNotSet);
         }
 
-        public bool EventIsSelected()
-        {
-            return SelectedEvent != null;
-        }
 
         public bool SelectedIndexNotSet()
         {
             return SelectedIndex != -1;
         }
 
-        public void CreateEvent()
+        public void GotEventPage()
         {
-            Events.Create(SelectedEvent);
+            MainViewModel.Instance.NavigateToPage(typeof(CreateEventPage));
         }
 
         public void RemoveEvent()
