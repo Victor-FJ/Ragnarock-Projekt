@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AdminConverter.cs" />
     <Compile Include="Converters\CountListConverter.cs" />
     <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
     <Compile Include="Converters\IndexOfArrayConverter.cs" />
@@ -126,9 +127,11 @@
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
+    <Compile Include="Converters\SomeConverter.cs" />
     <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
+    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
     <Compile Include="EventArsen\View\CreateEventPage.xaml.cs">
@@ -167,7 +170,9 @@
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\UserNameException.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
