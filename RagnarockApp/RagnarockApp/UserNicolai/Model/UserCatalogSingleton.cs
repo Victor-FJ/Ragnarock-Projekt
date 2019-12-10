@@ -12,8 +12,8 @@ namespace RagnarockApp.UserNicolai.Model
 {
     class UserCatalogSingleton
     {
-       private static UserCatalogSingleton _userInstants = new UserCatalogSingleton();
-       public  ObservableCollection<User> Users { get; }
+        private static UserCatalogSingleton _userInstants = new UserCatalogSingleton();
+        public ObservableCollection<User> Users { get; }
 
         //Property
         public static UserCatalogSingleton UserInstants
@@ -34,16 +34,16 @@ namespace RagnarockApp.UserNicolai.Model
 
         public void AddUser(User newUser)
         {
-        
-         try
-         {
-             Validate(newUser);
-             Users.Add(newUser);
-         }
-         catch (AddExceptions adex)
-         {
-             MessageDialogHelper.Show( adex.Message, "Du har fået en AddExeption");
-         }
+
+            try
+            {
+                Validate(newUser);
+                Users.Add(newUser);
+            }
+            catch (AddExceptions adex)
+            {
+                MessageDialogHelper.Show(adex.Message, "Du har fået en AddExeption");
+            }
         }
 
         public void RemoveAt(int index)
@@ -55,7 +55,7 @@ namespace RagnarockApp.UserNicolai.Model
         //Exeptions
         public void Add(int index, User userAdd)
         {
-           
+
         }
 
         public User Login(string userName, int userCode)
@@ -64,15 +64,12 @@ namespace RagnarockApp.UserNicolai.Model
                 if (user.UserName == userName)
                     if (user.Code == userCode)
                         return user;
-                    else 
+                    else
                         throw new PasswordException("Koden er ikke korrekt");
             throw new UserNameException("Brugernavnet passer ikke");
-
-
-
         }
 
-        private void Validate( User userAdd)
+        private void Validate(User userAdd)
         {
             if (userAdd.Id.ToString().Length != 6)
             {

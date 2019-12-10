@@ -28,8 +28,8 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
         <converter:AdminConverter x:Key="AdminConverter"/>
-        <converter:SomeConverter x:Key="SomeConverter"/>
     </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -63,13 +63,13 @@
         </StackPanel>
 
         <StackPanel Grid.Column ="1" Background="Aquamarine">
-            <ListView ItemsSource="{Binding UserCatalog.Users}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
+            <ListView ItemsSource="{Binding UserCatalog.Users}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="10" Spacing="15">
                             <TextBlock Text="{Binding Name}" FontSize="30"></TextBlock>
                             <TextBlock Text="{Binding Id}" FontSize="30"></TextBlock>
-                            <TextBlock Text="{Binding Name, Converter={StaticResource SomeConverter}}"/>
+                            <TextBlock Text="{Binding Administrator, Converter={StaticResource AdminConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

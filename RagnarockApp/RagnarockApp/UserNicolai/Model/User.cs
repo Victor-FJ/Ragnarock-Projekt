@@ -55,6 +55,7 @@ namespace RagnarockApp.UserNicolai.Model
         //Constructor
         public User()
         {
+            Administrator = false;
         }
 
         public User(string name, int id, bool administrator, string userName, int code)
