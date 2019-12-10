@@ -130,6 +130,7 @@
     <Compile Include="Converters\SomeConverter.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
+    <Compile Include="EventArsen\ViewModel\CreateEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />
     <Compile Include="EventArsen\ViewModel\EventViewModel.cs" />
     <Compile Include="EventArsen\View\CreateEventPage.xaml.cs">
