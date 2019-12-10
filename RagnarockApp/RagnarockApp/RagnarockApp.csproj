@@ -126,6 +126,7 @@
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
+    <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
     <Compile Include="EventArsen\ViewModel\EditEventViewModel.cs" />

@@ -53,6 +53,7 @@
         <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
         <converters:CountListConverter x:Key="CountListConverter"/>
         <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
+        <converters:IndexOfBoolArrayConverter x:Key="IndexOfBoolArrayConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -78,22 +79,22 @@
                         <StackPanel Style="{StaticResource StackPanelStyle}">
                             <TextBlock Text="Svarsmuglighed A:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                             <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}"/>
-                            <RadioButton IsEnabled="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" Style="{StaticResource RadioButtonStyle}"/>
+                            <RadioButton IsChecked="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfBoolArrayConverter}, ConverterParameter=0}" Style="{StaticResource RadioButtonStyle}"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource StackPanelStyle}">
                             <TextBlock Text="Svarsmuglighed B:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                             <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}"/>
-                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                            <RadioButton IsChecked="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfBoolArrayConverter}, ConverterParameter=1}" Style="{StaticResource RadioButtonStyle}"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource StackPanelStyle}">
                             <TextBlock Text="Svarsmuglighed C:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                             <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}"/>
-                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                            <RadioButton IsChecked="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfBoolArrayConverter}, ConverterParameter=2}" Style="{StaticResource RadioButtonStyle}"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource StackPanelStyle}">
                             <TextBlock Text="Svarsmuglighed D:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
                             <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}"/>
-                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                            <RadioButton IsChecked="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfBoolArrayConverter}, ConverterParameter=3}" Style="{StaticResource RadioButtonStyle}"/>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Text="{Binding AnswerOptionsError}" Style="{StaticResource ErrorTextBlockStyle}"/>
