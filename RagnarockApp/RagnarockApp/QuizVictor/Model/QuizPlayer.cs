@@ -29,7 +29,7 @@ namespace RagnarockApp.QuizVictor.Model
         #region QuizHandler
 
         /// <summary>
-        /// Creates a new quiz in the QuizPlayer
+        /// Creates a new quiz in the QuizPlayerInstance
         /// </summary>
         /// <param name="quizName">The quiz name for the quiz to be created. Must not be empty, whitespaced or used by another quiz</param>
         public void CreateQuiz(string quizName)
@@ -40,7 +40,7 @@ namespace RagnarockApp.QuizVictor.Model
         }
 
         /// <summary>
-        /// Changes the name of an existing quiz in the QuizPlayer
+        /// Changes the name of an existing quiz in the QuizPlayerInstance
         /// </summary>
         /// <param name="oldQuizName">The old quiz name of the quiz to be changed. Must be the name of an existing quiz</param>
         /// <param name="newQuizName">The new quiz name for the quiz. Must not be empty, whitespaced or used by another quiz</param>
@@ -65,18 +65,13 @@ namespace RagnarockApp.QuizVictor.Model
 
         #endregion
 
-        /// <summary>
-        /// Checks the name of a quiz to determine if its a valid quiz name
-        /// </summary>
-        /// <param name="quizName">The quiz name to test</param>
-        /// <returns></returns>
         private void CheckName(string quizName)
         {
             if (String.IsNullOrWhiteSpace(quizName))
                 throw new ValueEmptyException("The name has to include some text");
             for (int i = 0; i < Quizzes.Count; i++)
                 if (Quizzes[i].QuizName == quizName)
-                    throw new NameAlreadyExistException("This name is already used by another quiz");
+                    throw new ValueAlreadyExistException("This name is already used by another quiz");
         }
 
         private Quiz FindQuiz(string quizName)

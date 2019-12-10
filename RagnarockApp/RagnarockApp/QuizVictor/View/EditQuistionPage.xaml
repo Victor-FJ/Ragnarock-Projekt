@@ -7,6 +7,7 @@
     xmlns:common="using:RagnarockApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:RagnarockApp.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="500">
 
@@ -16,18 +17,17 @@
 
     <Page.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Margin" Value="4"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="100"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="85"/>
-            <Setter Property="Background" Value="DodgerBlue"/>
+            <Setter Property="Width" Value="110"/>
         </Style>
         <Style x:Key="ErrorTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="10"/>
@@ -36,63 +36,82 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Red"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Width" Value="80"/>
+            <Setter Property="Width" Value="90"/>
         </Style>
         <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="MinWidth" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="4,0,0,0"/>
+            <Setter Property="GroupName" Value="CorrectAnswer"/>
         </Style>
-        <common:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
-        <common:CountListConverter x:Key="CountListConverter"/>
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+        <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
+        <converters:CountListConverter x:Key="CountListConverter"/>
+        <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
     </Page.Resources>
 
     <Grid>
-        <Grid Background="Gray">
+        <Grid Background="#FF9FDAFF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Margin="0,0,0,15" Text="Lav Spørgsmål" Style="{StaticResource TextBlockStyle}"/>
-                <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
-                    <TextBlock Text="Spørgsmålet" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                    <TextBox Width="320" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
-                    <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
+                <TextBlock Margin="0,0,0,15" Text="Lav Spørgsmål" FontSize="24" HorizontalAlignment="Center"/>
+                <StackPanel Height="50" Style="{StaticResource StackPanelStyle}">
+                    <TextBlock Text="Spørgsmålet:" Width="70" Style="{StaticResource TextBlockStyle}"/>
+                    <TextBox Width="300" Height="32" Text="{Binding TheQuistion, Mode=TwoWay}"/>
+                    <TextBlock Text="{Binding TheQuistionError}" Style="{StaticResource ErrorTextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel Height="50" Style="{StaticResource StackPanelStyle}">
+                    <TextBlock Margin="50,0,0,0" Text="Hint:" Width="30" Style="{StaticResource TextBlockStyle}"/>
+                    <TextBox Width="250" Height="32" Text="{Binding Hint, Mode=TwoWay}"/>
+                    <TextBlock Text="{Binding HintError}" Style="{StaticResource ErrorTextBlockStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Svarsmuglighed A:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                    <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
-                    <RadioButton Style="{StaticResource RadioButtonStyle}"/>
-                    <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
+                    <StackPanel>
+                        <StackPanel Style="{StaticResource StackPanelStyle}">
+                            <TextBlock Text="Svarsmuglighed A:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}"/>
+                            <RadioButton IsEnabled="{Binding Answer, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" Style="{StaticResource RadioButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource StackPanelStyle}">
+                            <TextBlock Text="Svarsmuglighed B:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}"/>
+                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource StackPanelStyle}">
+                            <TextBlock Text="Svarsmuglighed C:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}"/>
+                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource StackPanelStyle}">
+                            <TextBlock Text="Svarsmuglighed D:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBox Width="200" Height="32" Text="{Binding AnswerOptions, Mode=TwoWay, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}"/>
+                            <RadioButton Style="{StaticResource RadioButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Text="{Binding AnswerOptionsError}" Style="{StaticResource ErrorTextBlockStyle}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Svarsmuglighed B:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                    <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
-                    <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Svarsmuglighed C:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                    <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
-                    <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Svarsmuglighed D:" FontSize="12" Style="{StaticResource TextBlockStyle}"/>
-                    <TextBox Width="200" Height="32" Text="{Binding QuizNameToCreate, Mode=TwoWay}"/>
-                    <TextBlock Text="{Binding ErrorToCreate}" Style="{StaticResource ErrorTextBlockStyle}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Opret Quiz" Command="{Binding CreateQuizCommand}" Style="{StaticResource ButtonStyle}"/>
+                <StackPanel Spacing="20" Height="60" Style="{StaticResource StackPanelStyle}">
+                    <Button Content="Tilføj Spørgsmål" Command="{Binding AddQuistionCommand}" Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Ret Spørgsmål" Command="{Binding UpdateQuistionCommand}" Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Slet Spørgsmål" Command="{Binding DeleteQuistionCommand}" Style="{StaticResource ButtonStyle}"/>
                 </StackPanel>
             </StackPanel>
-            <ListView Grid.Column="1" Background="#FF63B7DE" ItemsSource="{Binding QuizPlayer.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
+            <ListView Grid.Column="1" Background="#FF63B7DE" ItemsSource="{Binding QuistionCollection}" SelectedItem="{Binding SelectedQuistion, Mode=TwoWay}" Grid.RowSpan="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="3,6,3,6">
-                            <TextBlock Text="{Binding QuizName}" FontSize="24"/>
-                            <TextBlock>
-                            <Run Text="Antal Spørgsmål: "/>
-                            <Run Text="{Binding Quistions, Converter={StaticResource CountListConverter}}"/>
-                            <Run Text="   Oprettelses Dato: "/>
-                            <Run Text="{Binding CreatedDate, Converter={StaticResource DateTimeOffsetToStringConverter}}"/>
+                            <TextBlock Text="{Binding TheQuistion}" FontSize="24"/>
+                            <TextBlock Text="{Binding Hint}">
+                            </TextBlock>
+                            <TextBlock Text="{Binding Answer}">
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>

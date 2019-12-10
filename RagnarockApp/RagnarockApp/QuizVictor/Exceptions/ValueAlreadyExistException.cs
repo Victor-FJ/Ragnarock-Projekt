@@ -8,11 +8,11 @@ namespace RagnarockApp.QuizVictor.Exceptions
 {
     /// <summary>
     /// This exception is thrown in case it is attempted to
-    /// set the name of a quiz to name that is already used by another quiz
+    /// set the value of a property to a value that is already used by another property
     /// </summary>
-    public class NameAlreadyExistException : Exception
+    public class ValueAlreadyExistException : Exception
     {
-        public NameAlreadyExistException(string message) 
+        public ValueAlreadyExistException(string message) 
             : base(message)
         {
         }

@@ -16,7 +16,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 {
     public class EditQuizViewModel : INotifyPropertyChanged
     {
-        public QuizPlayer QuizPlayer { get; set; }
+        public QuizPlayer QuizPlayerInstance { get; set; }
 
         private Quiz _selectedQuiz;
         public Quiz SelectedQuiz
@@ -56,7 +56,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public EditQuizViewModel()
         {
-            QuizPlayer = QuizPlayer.Instance;
+            QuizPlayerInstance = QuizPlayer.Instance;
             CreateQuizCommand = new RelayCommand(CreateQuiz);
             ModifyNameCommand = new RelayCommand(ModifyName, QuizIsSelected);
             ModifyQuizCommand = new RelayCommand(ModifyQuiz, QuizIsSelected);
@@ -79,14 +79,14 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             try
             {
-                QuizPlayer.CreateQuiz(QuizNameToCreate);
-                //Goto new page
+                QuizPlayerInstance.CreateQuiz(QuizNameToCreate);
+                MainViewModel.Instance.NavigateToPage(typeof(EditQuistionPage));
             }
             catch (ValueEmptyException exception)
             {
                 ErrorToCreate = exception.Message;
             }
-            catch (NameAlreadyExistException exception)
+            catch (ValueAlreadyExistException exception)
             {
                 ErrorToCreate = exception.Message;
             }
@@ -100,16 +100,15 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             try
             {
-                QuizPlayer.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
+                QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
                 if (await MessageDialogHelper.ShowWInput($"Are you sure you want to change the name of the quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Change Name?"))
-                    QuizPlayer.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
-                MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
+                    QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
             }
             catch (ValueEmptyException exception)
             {
                 ErrorToEdit = exception.Message;
             }
-            catch (NameAlreadyExistException exception)
+            catch (ValueAlreadyExistException exception)
             {
                 ErrorToEdit = exception.Message;
             }
@@ -121,14 +120,14 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public void ModifyQuiz()
         {
-            QuizPlayer.MarkedQuiz = SelectedQuiz;
-            //Goto new page
+            QuizPlayerInstance.MarkedQuiz = SelectedQuiz;
+            MainViewModel.Instance.NavigateToPage(typeof(EditQuistionPage));
         }
 
         public async void DeleteQuiz()
         {
             if (await MessageDialogHelper.ShowWInput($"Are you sure you want to delete the quiz?\n({SelectedQuiz.QuizName})", "Delete quiz?"))
-                QuizPlayer.DeleteQuiz(SelectedQuiz.QuizName, true);
+                QuizPlayerInstance.DeleteQuiz(SelectedQuiz.QuizName, true);
             MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
             OnPropertyChanged(nameof(ErrorToEdit));
         }
