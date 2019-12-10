@@ -165,7 +165,9 @@
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
     <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\UserNameException.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />

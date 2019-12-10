@@ -58,6 +58,20 @@ namespace RagnarockApp.UserNicolai.Model
            
         }
 
+        public User Login(string userName, int userCode)
+        {
+            foreach (User user in Users)
+                if (user.UserName == userName)
+                    if (user.Code == userCode)
+                        return user;
+                    else 
+                        throw new PasswordException("Koden er ikke korrekt");
+            throw new UserNameException("Brugernavnet passer ikke");
+
+
+
+        }
+
         private void Validate( User userAdd)
         {
             if (userAdd.Id.ToString().Length != 6)
