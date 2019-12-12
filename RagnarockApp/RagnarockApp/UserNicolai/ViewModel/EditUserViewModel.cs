@@ -43,6 +43,9 @@ namespace RagnarockApp.UserNicolai.ViewModel
             set { _addCommand = value; }
         }
 
+        /// <summary>
+        /// En Kommando der fjerner en bruger fra listen
+        /// </summary>
         public ICommand RemoveCommand
         {
             get { return _removeCommand; }
@@ -72,26 +75,36 @@ namespace RagnarockApp.UserNicolai.ViewModel
 
 
         //Action
-
+        /// <summary>
+        /// En metode der opretter en ny bruger
+        /// </summary>
         public void AddUser()
         {
             UserCatalog.AddUser(SelectedUser);
         }
 
+        /// <summary>
+        /// En metode der fjerner en bruger
+        /// </summary>
         public void RemoveUser()
         {
             UserCatalog.RemoveAt(SelectedIndex);
         }
 
         //Func
-
+        /// <summary>
+        /// Sørger for man ikke sletter bruger før man har trykket på brugeren
+        /// </summary>
+        /// <returns></returns>
         public bool SelectedIndexIsNotSet()
         {
             return SelectedIndex != -1;
         }
 
         //Constructor
-
+        /// <summary>
+        /// Initialisere kommandoerne
+        /// </summary>
         public EditUserViewModel()
         {
             _addCommand = new RelayCommand(AddUser);

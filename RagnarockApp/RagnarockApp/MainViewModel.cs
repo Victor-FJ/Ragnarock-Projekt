@@ -28,7 +28,19 @@ namespace RagnarockApp
         public static MainViewModel Instance
         { get { return _instance; } }
         
-        public User ActiveUser { get; set; }
+        private User _activeUser;
+
+        public User ActiveUser
+        {
+            get { return _activeUser; }
+            set
+            {
+                _activeUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+         
 
         #region Pages
 

@@ -22,12 +22,15 @@ namespace RagnarockApp.UserNicolai.Model
         }
 
         //Users
+        /// <summary>
+        /// 
+        /// </summary>
         private UserCatalogSingleton()
         {
             Users = new ObservableCollection<User>();
-            Users.Add(new User("Grim", 123575, true, "Servant", 6852147));
-            Users.Add(new User("Mandy", 489653, false, "Leader", 11112011));
-            Users.Add(new User("Billy", 645872, false, "Brainless", 11111111));
+            Users.Add(new User("Grim", 123575, true, "Servant", "664848"));
+            Users.Add(new User("Mandy", 489653, false, "Leader", "11112011"));
+            Users.Add(new User("Billy", 645872, false, "Brainless", "11111111"));
         }
 
         //Methods
@@ -53,12 +56,17 @@ namespace RagnarockApp.UserNicolai.Model
 
 
         //Exeptions
-        public void Add(int index, User userAdd)
-        {
+        //public void Add(int index, User userAdd)
+        //{
 
-        }
-
-        public User Login(string userName, int userCode)
+        //}
+        /// <summary>
+        /// Bruges til at identificere om brugernavn og Password er korrekt
+        /// </summary>
+        /// <param name="userName">Viser om brugernavn findes</param>
+        /// <param name="userCode">Viser om Password findes</param>
+        /// <returns> Retunere en bruger hvis den findes</returns>
+        public User Login(string userName, string userCode)
         {
             foreach (User user in Users)
                 if (user.UserName == userName)
