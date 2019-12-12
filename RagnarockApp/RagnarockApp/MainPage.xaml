@@ -40,13 +40,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding NavToPageCommand}" Background="Transparent" Width="50" Height="50">
+            <Button Command="{Binding NavBackCommand}" Background="Transparent" Width="50" Height="50">
                 <StackPanel>
                     <TextBlock Text="&#xE760;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
                     <TextBlock Text="Tilbage" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding NavToPageCommand}" Background="Transparent" Width="50" Height="50">
+            <Button Command="{Binding NavForwardCommand}" Background="Transparent" Width="50" Height="50">
                 <StackPanel>
                     <TextBlock Text="&#xE761;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
                     <TextBlock Text="Frem" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
@@ -79,9 +79,9 @@
                     <TextBlock Text="Bruger Log" Style="{StaticResource MenuNavTextStyle}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditUserPage}">
+            <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding CreateUserPage}">
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <TextBlock Text="&#xE779;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="&#xE8FA;" Style="{StaticResource MenuNavIconStyle}"/>
                     <TextBlock Text="Ny Bruger" Style="{StaticResource MenuNavTextStyle}"/>
                 </StackPanel>
             </Button>

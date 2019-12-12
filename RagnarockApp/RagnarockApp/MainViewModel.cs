@@ -40,26 +40,43 @@ namespace RagnarockApp
             }
         }
 
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         #region Pages
 
-        public Type EditUserPage
-        { get { return typeof(EditUserPage); } }
+        
         public Type LoginUserPage
         { get { return typeof(LoginUserPage); } }
-        public Type EditEventPage
-        { get { return typeof(EditEventPage); } }
         public Type EventPage
         { get { return typeof(EventPage); } }
-        public Type EditQuizPage
-        { get { return typeof(EditQuizPage); } }
         public Type PlayQuizPage
         { get { return typeof(PlayQuizPage); } }
+        public Type EditUserPage
+        { get { return typeof(EditUserPage); } }
+        public Type CreateUserPage
+        { get { return typeof(CreateUserPage); } }
+        public Type EditEventPage
+        { get { return typeof(EditEventPage); } }
+        public Type EditQuizPage
+        { get { return typeof(EditQuizPage); } }
+        
 
         #endregion
 
         public ICommand NavToPageCommand { get; set; }
+        public ICommand NavBackCommand { get; set; }
+        public ICommand NavForwardCommand { get; set; }
 
         public MainViewModel(NavigationService navService) : this()
         {
@@ -69,6 +86,8 @@ namespace RagnarockApp
         {
             _instance = this;
             NavToPageCommand = new RelayCommandWParam(NavigateToPage);
+            NavBackCommand = new RelayCommand(NavigateBack);
+            NavForwardCommand = new RelayCommand(NavigateForward);
             LoadFiles();
         }
 
@@ -82,6 +101,11 @@ namespace RagnarockApp
         public void NavigateBack()
         {
             _navigationService.GoBack();
+        }
+
+        public void NavigateForward()
+        {
+            _navigationService.GoForward();
         }
 
         #endregion
