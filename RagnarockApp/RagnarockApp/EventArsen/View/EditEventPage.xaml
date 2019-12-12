@@ -50,7 +50,7 @@
                     <TextBlock Text="Emne" Style="{StaticResource TextBlockStyle}"/>
                     <TextBox Text="{Binding SelectedEvent.EventSubject, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                     <Button Content="CreateEvent" Command="{Binding GotoEventCommand}" Style="{StaticResource ButtonStyle}"/>
                     <Button Content="Remove" Command="{Binding RemoveEventCommand}" Style="{StaticResource ButtonStyle}"/>
                     <Button Content="Update" Command="{Binding UpdateEventCommand}" Style="{StaticResource ButtonStyle}"/>
@@ -60,11 +60,16 @@
         <ListView ItemsSource="{Binding Events.Events}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding TimeOfDate}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding TimeOfEvent}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding EventSubject}" Margin="5,5,5,5"/>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding EventSubject}" Margin="5,5,5,5"/>
+                            <TextBlock Text="{Binding Title}" Margin="5,5,5,5"/>
+                            <TextBlock Text="{Binding TimeOfDate}" Margin="5,5,5,5"/>
+                            <TextBlock Text="{Binding TimeOfEvent}" Margin="5,5,5,5"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <Image Source="{Binding EventImage}" Height="200" Width="290"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
