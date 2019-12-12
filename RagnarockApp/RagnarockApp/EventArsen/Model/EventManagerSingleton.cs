@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RagnarockApp.EventArsen.ViewModel;
+using RagnarockApp.Persistency;
 
 namespace RagnarockApp.EventArsen.Model
 {
@@ -38,6 +40,11 @@ namespace RagnarockApp.EventArsen.Model
         public void Update(int index, Event eventToUpdate)
         {
             Events[index] = eventToUpdate;
+        }
+
+        public async void SaveEventAsync()
+        {
+            await PersistencyFacade.SaveEventsAsJsonAsync(Events);
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using RagnarockApp.Common;
 using RagnarockApp.Annotations;
 using RagnarockApp.EventArsen.View;
+using RagnarockApp.Persistency;
 
 namespace RagnarockApp.EventArsen.ViewModel
 {
@@ -64,12 +65,19 @@ namespace RagnarockApp.EventArsen.ViewModel
         public void RemoveEvent()
         {
             Events.RemoveAt(SelectedIndex);
+            Save();
         }
 
         public void UpdateEvent()
         {
             Events.Update(SelectedIndex, SelectedEvent);
         }
+
+        public async void Save()
+        {
+            await PersistencyFacade.SaveEventsAsJsonAsync(EventManagerSingleton.Instance.Events);
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

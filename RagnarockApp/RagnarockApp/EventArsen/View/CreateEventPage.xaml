@@ -58,7 +58,7 @@
                 <TextBox Text="{Binding SelectedEvent.EventImage, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Create" Command="{Binding CreateEventCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Skab" Command="{Binding CreateEventCommand}" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

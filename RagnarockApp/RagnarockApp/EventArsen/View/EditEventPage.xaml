@@ -51,10 +51,10 @@
                     <TextBox Text="{Binding SelectedEvent.EventSubject, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
                 </StackPanel>
             <StackPanel Orientation="Horizontal">
-                    <Button Content="CreateEvent" Command="{Binding GotoEventCommand}" Style="{StaticResource ButtonStyle}"/>
-                    <Button Content="Remove" Command="{Binding RemoveEventCommand}" Style="{StaticResource ButtonStyle}"/>
-                    <Button Content="Update" Command="{Binding UpdateEventCommand}" Style="{StaticResource ButtonStyle}"/>
-                </StackPanel>
+                    <Button Content="Skab" Command="{Binding GotoEventCommand}" Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Fjern" Command="{Binding RemoveEventCommand}" Style="{StaticResource ButtonStyle}"/>
+                    <Button Content="Updatere" Command="{Binding UpdateEventCommand}" Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
         </StackPanel>
         
         <ListView ItemsSource="{Binding Events.Events}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
