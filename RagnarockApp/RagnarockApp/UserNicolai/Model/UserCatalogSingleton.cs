@@ -23,7 +23,7 @@ namespace RagnarockApp.UserNicolai.Model
 
         //Users
         /// <summary>
-        /// 
+        /// Kan opdatere ændringer i Users listen
         /// </summary>
         private UserCatalogSingleton()
         {
@@ -60,6 +60,7 @@ namespace RagnarockApp.UserNicolai.Model
         //{
 
         //}
+
         /// <summary>
         /// Bruges til at identificere om brugernavn og Password er korrekt
         /// </summary>

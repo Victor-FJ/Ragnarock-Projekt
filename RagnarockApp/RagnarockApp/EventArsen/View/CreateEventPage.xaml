@@ -46,7 +46,7 @@
                 <TextBox Text="{Binding SelectedEvent.TimeOfDate, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Tidpunkt" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock Text="Tidspunkt" Style="{StaticResource TextBlockStyle}"/>
                 <TextBox Text="{Binding SelectedEvent.TimeOfEvent, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -54,22 +54,12 @@
                 <TextBox Text="{Binding SelectedEvent.EventSubject, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="EventImage" Style="{StaticResource TextBlockStyle}"/>
+                <TextBox Text="{Binding SelectedEvent.EventImage, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Button Content="Create" Command="{Binding CreateEventCommand}" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
-
-        <!--<ListView ItemsSource="{Binding Events, Mode=TwoWay}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding TimeOfDate}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding TimeOfEvent}" Margin="5,5,5,5"/>
-                        <TextBlock Text="{Binding EventSubject}" Margin="5,5,5,5"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
-
     </StackPanel>
 </Page>

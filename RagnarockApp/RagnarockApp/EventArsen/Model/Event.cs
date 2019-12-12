@@ -12,6 +12,7 @@ namespace RagnarockApp.EventArsen.Model
         public string TimeOfDate { get; set; }
         public string TimeOfEvent { get; set; }
         public string EventSubject { get; set; }
+        public string EventImage { get; set; }
 
         public Event()
         {
@@ -19,19 +20,21 @@ namespace RagnarockApp.EventArsen.Model
             TimeOfDate = "";
             TimeOfEvent = "";
             EventSubject = "";
+            EventImage = "";
         }
 
-        public Event(string title, string timeOfDate, string timeOfEvent, string eventSubject)
+        public Event(string eventSubject, string title, string timeOfDate, string timeOfEvent, string eventImage)
         {
             Title = title;
             TimeOfDate = timeOfDate;
             TimeOfEvent = timeOfEvent;
             EventSubject = eventSubject;
+            EventImage = eventImage;
         }
 
         public override string ToString()
         {
-            return $"{Title} {TimeOfDate} {TimeOfEvent} {EventSubject}";
+            return $"{EventSubject} {Title} {TimeOfDate} {TimeOfEvent}";
         }
     }
 }
