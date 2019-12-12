@@ -54,6 +54,7 @@
         <converters:CountListConverter x:Key="CountListConverter"/>
         <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
         <converters:IndexOfBoolArrayConverter x:Key="IndexOfBoolArrayConverter"/>
+        <converters:SomeConverter x:Key="SomeConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -110,10 +111,9 @@
                     <DataTemplate>
                         <StackPanel Margin="3,6,3,6">
                             <TextBlock Text="{Binding TheQuistion}" FontSize="24"/>
-                            <TextBlock Text="{Binding Hint}">
-                            </TextBlock>
-                            <TextBlock Text="{Binding Answer}">
-                            </TextBlock>
+                            <TextBlock Text="{Binding Hint}"/>
+                            <TextBlock Text="{Binding Answer}"/>
+                            <TextBlock Text="{Binding TheQuistion, Converter={StaticResource SomeConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

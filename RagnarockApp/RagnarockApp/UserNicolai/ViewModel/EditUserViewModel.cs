@@ -15,7 +15,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
     class EditUserViewModel: INotifyPropertyChanged
     {
         //Instance
-        private User _selectedUser = new User();
+        private User _selectedUser;
         private int _selectedIndex;
         private ICommand _removeCommand;
         private ICommand _addCommand;
@@ -31,12 +31,11 @@ namespace RagnarockApp.UserNicolai.ViewModel
             {
                 _selectedUser = value;
                 if (value == null)
-                {
                     _selectedUser = new User();
-                }
                 OnPropertyChanged();
             }
         }
+
 
         public ICommand AddCommand
         {
