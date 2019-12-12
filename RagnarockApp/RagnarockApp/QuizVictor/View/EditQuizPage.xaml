@@ -40,7 +40,6 @@
         </Style>
         <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
         <converters:CountListConverter x:Key="CountListConverter"/>
-        <converters:SomeConverter x:Key="SomeConverter"/>
     </Page.Resources>
 
     <Grid Background="#FF1A1A74">
@@ -62,7 +61,6 @@
                             <Run Text="{Binding Quistions, Converter={StaticResource CountListConverter}}"/>
                             <Run Text="   Oprettelses Dato: "/>
                             <Run Text="{Binding CreatedDate, Converter={StaticResource DateTimeOffsetToStringConverter}}"/>
-                            <Run Text="{Binding QuizName, Converter={StaticResource SomeConverter}}"/>
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>

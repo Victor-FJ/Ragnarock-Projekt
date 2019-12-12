@@ -45,7 +45,7 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (value == null)
-                    throw  new ValueEmptyException("The AnswerOptions cannot be set to null");
+                    throw  new ValueEmptyException("The AnswerOptionsInput cannot be set to null");
                 if (value.Length != 4)
                     throw new IncorrectSizeException("There has to be exactly 4 answers options");
                 for (int i = 0; i < value.Length; i++)
@@ -66,7 +66,7 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (value < 0 || value > _answerOptions.Length)
-                    throw new IndexOutOfRangeException("The answer has to be between 0 and 3 and be the index for the correct answer in AnswerOptions");
+                    throw new IndexOutOfRangeException("The answer has to be between one of the 4 answer options");
                 _answer = value;
             }
         }
@@ -78,7 +78,7 @@ namespace RagnarockApp.QuizVictor.Model
             _hint = "A hint";
         }
 
-        public Quistion(string theQuistion, string hint, string[] answerOptions, int answer) 
+        public Quistion(string theQuistion, string hint, string[] answerOptions, int answer)
             : this()
         {
             TheQuistion = theQuistion;

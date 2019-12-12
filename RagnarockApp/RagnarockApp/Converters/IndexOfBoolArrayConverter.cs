@@ -14,9 +14,9 @@ namespace RagnarockApp.Converters
         {
             // The value parameter is the data from the source object.
             _array = value as bool[];
-            int index = Int32.Parse((string)parameter);
             if (_array == null)
                 return null;
+            int index = Int32.Parse((string)parameter);
             return _array[index];
         }
 
@@ -25,9 +25,12 @@ namespace RagnarockApp.Converters
         {
             if (_array == null)
                 return null;
+            bool[] array = new bool[_array.Length];
+            for (int i = 0; i < _array.Length; i++)
+                array[i] = _array[i];
             int index = Int32.Parse((string)parameter);
-            _array[index] = (bool) value;
-            return _array;
+            array[index] = (bool) value;
+            return array;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel.DataTransfer;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.QuizVictor.Exceptions;
@@ -19,9 +20,22 @@ namespace RagnarockApp.QuizVictor.ViewModel
     public class EditQuistionViewModel : INotifyPropertyChanged
     {
         public Quiz QuizToEdit { get; set; }
-
         public ObservableCollection<Quistion> QuistionCollection { get; set; }
 
+
+        private int _selectedIndex = -1;
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Quistion _editedQuistion = new Quistion();
+        
         private Quistion _selectedQuistion;
         public Quistion SelectedQuistion
         {
@@ -30,36 +44,53 @@ namespace RagnarockApp.QuizVictor.ViewModel
             {
                 _selectedQuistion = value;
                 if (value == null)
-                    _selectedQuistion = new Quistion();
+                {
+                    TheQuistionInput = "";
+                    HintInput = "";
+                    AnswerOptionsInput = new string[4];
+                    AnswerInput = new bool[4];
+                    TheQuistionError = "*";
+                    HintError = "*";
+                    AnswerOptionsError = "*";
+                    AnswerError = "*";
+                    OnPropertyChanged(nameof(TheQuistionError));
+                    OnPropertyChanged(nameof(HintError));
+                    OnPropertyChanged(nameof(AnswerOptionsError));
+                    OnPropertyChanged(nameof(AnswerError));
+                }
                 else
                 {
-                    TheQuistion = _selectedQuistion.TheQuistion;
-                    Hint = _selectedQuistion.Hint;
-                    AnswerOptions = _selectedQuistion.AnswerOptions;
+                    TheQuistionInput = _selectedQuistion.TheQuistion;
+                    HintInput = _selectedQuistion.Hint;
+                    AnswerOptionsInput = _selectedQuistion.AnswerOptions;
                     bool[] answerBools = new bool[4];
                     answerBools[_selectedQuistion.Answer] = true;
-                    Answer = answerBools;
+                    AnswerInput = answerBools;
                 }
+                ((RelayCommand)UpdateQuistionCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DeleteQuistionCommand).RaiseCanExecuteChanged();
             }
         }
 
         public ICommand AddQuistionCommand { get; set; }
         public ICommand UpdateQuistionCommand { get; set; }
         public ICommand DeleteQuistionCommand { get; set; }
+        public ICommand SaveQuizCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         #region EditQuistionProperties
 
-        private string _theQuistion;
-        public string TheQuistion
+        private string _theQuistionInput;
+        public string TheQuistionInput
         {
-            get { return _theQuistion; }
+            get { return _theQuistionInput; }
             set
             {
-                _theQuistion = value;
+                _theQuistionInput = value;
                 OnPropertyChanged();
                 try
                 {
-                    SelectedQuistion.TheQuistion = _theQuistion;
+                    _editedQuistion.TheQuistion = _theQuistionInput;
                     TheQuistionError = "";
                 }
                 catch (ValueEmptyException exception)
@@ -73,23 +104,25 @@ namespace RagnarockApp.QuizVictor.ViewModel
                 finally
                 {
                     OnPropertyChanged(nameof(TheQuistionError));
+                    ((RelayCommand)AddQuistionCommand).RaiseCanExecuteChanged();
+                    ((RelayCommand)UpdateQuistionCommand).RaiseCanExecuteChanged();
                 }
             }
         }
         public string TheQuistionError { get; set; }
 
 
-        private string _hint;
-        public string Hint
+        private string _hintInput;
+        public string HintInput
         {
-            get { return _hint; }
+            get { return _hintInput; }
             set
             {
-                _hint = value;
+                _hintInput = value;
                 OnPropertyChanged();
                 try
                 {
-                    SelectedQuistion.Hint = _hint;
+                    _editedQuistion.Hint = _hintInput;
                     HintError = "";
                 }
                 catch (ValueEmptyException exception)
@@ -99,22 +132,24 @@ namespace RagnarockApp.QuizVictor.ViewModel
                 finally
                 {
                     OnPropertyChanged(nameof(HintError));
+                    ((RelayCommand)AddQuistionCommand).RaiseCanExecuteChanged();
+                    ((RelayCommand)UpdateQuistionCommand).RaiseCanExecuteChanged();
                 }
             }
         }
         public string HintError { get; set; }
 
-        private string[] _answerOptions;
-        public string[] AnswerOptions
+        private string[] _answerOptionsInput;
+        public string[] AnswerOptionsInput
         {
-            get { return _answerOptions; }
+            get { return _answerOptionsInput; }
             set
             {
-                _answerOptions = value;
+                _answerOptionsInput = value;
                 OnPropertyChanged();
                 try
                 {
-                    SelectedQuistion.AnswerOptions = _answerOptions;
+                    _editedQuistion.AnswerOptions = _answerOptionsInput;
                     AnswerOptionsError = "";
                 }
                 catch (ValueEmptyException exception)
@@ -128,57 +163,113 @@ namespace RagnarockApp.QuizVictor.ViewModel
                 finally
                 {
                     OnPropertyChanged(nameof(AnswerOptionsError));
+                    ((RelayCommand)AddQuistionCommand).RaiseCanExecuteChanged();
+                    ((RelayCommand)UpdateQuistionCommand).RaiseCanExecuteChanged();
                 }
             }
         }
         public string AnswerOptionsError { get; set; }
 
 
-        private bool[] _answer;
-        public bool[] Answer
+        private bool[] _answerInput;
+        public bool[] AnswerInput
         {
-            get { return _answer; }
+            get { return _answerInput; }
             set
             {
-                _answer = value;
+                _answerInput = value;
                 OnPropertyChanged();
+                try
+                {
+                    for (int i = 0; i < AnswerInput.Length; i++)
+                        if (AnswerInput[i])
+                            _editedQuistion.Answer = i;
+                    AnswerError = "";
+                }
+                catch (IndexOutOfRangeException exception)
+                {
+                    AnswerError = exception.Message;
+                }
+                finally
+                {
+                    OnPropertyChanged(nameof(AnswerError));
+                    ((RelayCommand)AddQuistionCommand).RaiseCanExecuteChanged();
+                    ((RelayCommand)UpdateQuistionCommand).RaiseCanExecuteChanged();
+                }
             }
         }
+        public string AnswerError { get; set; }
 
         #endregion
 
         public EditQuistionViewModel()
         {
             QuizToEdit = QuizPlayer.Instance.MarkedQuiz;
-            AddQuistionCommand = new RelayCommand(AddQuistion);
-            UpdateQuistionCommand = new RelayCommand(UpdateQuistion);
-            DeleteQuistionCommand = new RelayCommand(DeleteQuistion);
+            AddQuistionCommand = new RelayCommand(AddQuistion, QuistionIsValid);
+            UpdateQuistionCommand = new RelayCommand(UpdateQuistion, QuistionIsSelectedAndValid);
+            DeleteQuistionCommand = new RelayCommand(DeleteQuistion, QuistionIsSelected);
+            SaveQuizCommand = new RelayCommand(SaveQuiz);
+            CancelCommand = new RelayCommand(Cancel);
             
             if (QuizToEdit != null)
                 QuistionCollection = new ObservableCollection<Quistion>(QuizToEdit.Quistions);
+            SelectedQuistion = null;
         }
 
         #region EditQuistionHandler
 
         //Functions
 
+        public bool QuistionIsSelected()
+        {
+            return _selectedQuistion != null;
+        }
+        public bool QuistionIsValid()
+        {
+            bool theQuistionValid = _editedQuistion.TheQuistion == TheQuistionInput;
+            bool hintValid = _editedQuistion.Hint == HintInput;
+            bool answerOptValid = _editedQuistion.AnswerOptions == AnswerOptionsInput;
+            bool answer = AnswerInput[_editedQuistion.Answer];
+            return theQuistionValid && hintValid && answerOptValid && answer;
+        }
 
+        public bool QuistionIsSelectedAndValid()
+        {
+            return QuistionIsSelected() && QuistionIsValid();
+        }
 
         //Actions
 
         public void AddQuistion()
         {
-
+            QuistionCollection.Add(_editedQuistion);
+            _editedQuistion = new Quistion();
+            SelectedIndex = QuistionCollection.Count - 1;
         }
 
         public void UpdateQuistion()
         {
-
+            int index = SelectedIndex;
+            QuistionCollection[index] = _editedQuistion;
+            _editedQuistion = new Quistion();
+            SelectedIndex = index;
         }
 
         public void DeleteQuistion()
         {
+            QuistionCollection.RemoveAt(SelectedIndex);
+        }
 
+        public void SaveQuiz()
+        {
+            QuizToEdit.Quistions = QuistionCollection.ToList();
+            MainViewModel.Instance.NavigateBack();
+            //MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
+        }
+
+        public void Cancel()
+        {
+            MainViewModel.Instance.NavigateBack();
         }
 
         #endregion

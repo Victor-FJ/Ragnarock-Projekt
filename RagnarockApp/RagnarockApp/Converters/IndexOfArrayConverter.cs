@@ -5,14 +5,14 @@ namespace RagnarockApp.Converters
 {
     public class IndexOfArrayConverter : IValueConverter
     {
-        private object[] _array;
+        private string[] _array;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             // The value parameter is the data from the source object.
-            _array = value as object[];
-            int index = Int32.Parse((string) parameter);
+            _array = value as string[];
             if (_array == null)
                 return null;
+            int index = Int32.Parse((string) parameter);
             return _array[index];
         }
 
@@ -21,9 +21,12 @@ namespace RagnarockApp.Converters
         {
             if (_array == null)
                 return null;
+            string[] array = new string[_array.Length];
+            for (int i = 0; i < _array.Length; i++)
+                array[i] = _array[i];
             int index = Int32.Parse((string)parameter);
-            _array[index] = value;
-            return _array;
+            array[index] = (string) value;
+            return array;
         }
     }
 }
