@@ -30,7 +30,6 @@ namespace RagnarockApp
         { get { return _instance; } }
         
         private User _activeUser;
-
         public User ActiveUser
         {
             get { return _activeUser; }
@@ -41,7 +40,7 @@ namespace RagnarockApp
             }
         }
 
-         
+
 
         #region Pages
 
