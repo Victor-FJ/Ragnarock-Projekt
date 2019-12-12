@@ -246,6 +246,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
             QuistionCollection.Add(_editedQuistion);
             _editedQuistion = new Quistion();
             SelectedIndex = QuistionCollection.Count - 1;
+            OnPropertyChanged(nameof(QuistionCollection));
         }
 
         public void UpdateQuistion()
@@ -259,6 +260,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public void DeleteQuistion()
         {
             QuistionCollection.RemoveAt(SelectedIndex);
+            OnPropertyChanged(nameof(QuistionCollection));
         }
 
         public async void SaveQuiz()

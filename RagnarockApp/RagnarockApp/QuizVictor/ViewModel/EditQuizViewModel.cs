@@ -76,11 +76,12 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         //Actions
 
-        public void CreateQuiz()
+        public async void CreateQuiz()
         {
             try
             {
                 QuizPlayerInstance.CreateQuiz(QuizNameToCreate);
+                await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizPlayer.Instance.Quizzes);
                 MainViewModel.Instance.NavigateToPage(typeof(EditQuistionPage));
             }
             catch (ValueEmptyException exception)
@@ -103,8 +104,11 @@ namespace RagnarockApp.QuizVictor.ViewModel
             {
                 QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
                 if (await MessageDialogHelper.ShowWInput($"Are you sure you want to change the name of the quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Change Name?"))
+                {
                     QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
-
+                    await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizPlayer.Instance.Quizzes);
+                }
+                MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
             }
             catch (ValueEmptyException exception)
             {
@@ -129,7 +133,10 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public async void DeleteQuiz()
         {
             if (await MessageDialogHelper.ShowWInput($"Are you sure you want to delete the quiz?\n({SelectedQuiz.QuizName})", "Delete quiz?"))
+            {
                 QuizPlayerInstance.DeleteQuiz(SelectedQuiz.QuizName, true);
+                await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizPlayer.Instance.Quizzes);
+            }
             MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
             OnPropertyChanged(nameof(ErrorToEdit));
         }
