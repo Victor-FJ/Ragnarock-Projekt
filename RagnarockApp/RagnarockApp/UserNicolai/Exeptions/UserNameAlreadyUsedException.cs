@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.UserNicolai.Exeptions
 {
-    class UserExeptions
+    class UserNameAlreadyUsedException: Exception
     {
+        public UserNameAlreadyUsedException(string message) : base(message)
+        {
+
+        }
     }
 }
