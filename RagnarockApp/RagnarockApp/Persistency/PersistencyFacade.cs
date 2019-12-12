@@ -78,17 +78,8 @@ namespace RagnarockApp.Persistency
 
         private static async Task<string> DeSerializeObjectFileAsync(string fileName)
         {
-            try
-            {
-                StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
-                return await FileIO.ReadTextAsync(localFile);
-            }
-            catch (FileNotFoundException)
-            {
-
-                MessageDialogHelper.Show("Loading for the first time?", "File not found!");
-                return null;
-            }
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+            return await FileIO.ReadTextAsync(localFile);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -88,7 +89,14 @@ namespace RagnarockApp
 
         private async void LoadFiles()
         {
-            QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+            try
+            {
+                QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+            }
+            catch (FileNotFoundException)
+            {
+                MessageDialogHelper.Show("Loading for the first time?", "File not found!");
+            }
         }
 
         #region NotifyPropertyChanged
