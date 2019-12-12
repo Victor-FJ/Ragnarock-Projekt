@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
+using RagnarockApp.Persistency;
+using RagnarockApp.UserNicolai.Exeptions;
 using RagnarockApp.UserNicolai.Model;
 
 namespace RagnarockApp.UserNicolai.ViewModel
@@ -18,7 +20,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
         private User _selectedUser;
         private int _selectedIndex;
         private ICommand _removeCommand;
-        private ICommand _addCommand;
+       
 
 
         //Property
@@ -37,11 +39,6 @@ namespace RagnarockApp.UserNicolai.ViewModel
         }
 
 
-        public ICommand AddCommand
-        {
-            get { return _addCommand; }
-            set { _addCommand = value; }
-        }
 
         /// <summary>
         /// En Kommando der fjerner en bruger fra listen
@@ -52,7 +49,9 @@ namespace RagnarockApp.UserNicolai.ViewModel
             set { _removeCommand = value; }
         }
 
-
+        /// <summary>
+        /// viser når metoden forandre sig
+        /// </summary>
         public int SelectedIndex
         {
             get { return _selectedIndex;}
@@ -61,10 +60,11 @@ namespace RagnarockApp.UserNicolai.ViewModel
                 _selectedIndex = value;
                 OnPropertyChanged();
                 ((RelayCommand) _removeCommand).RaiseCanExecuteChanged();
-                ((RelayCommand)_addCommand).RaiseCanExecuteChanged();
             }
         }
-
+        /// <summary>
+        /// notificere når properties ændres
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -73,22 +73,13 @@ namespace RagnarockApp.UserNicolai.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-        //Action
-        /// <summary>
-        /// En metode der opretter en ny bruger
-        /// </summary>
-        public void AddUser()
-        {
-            UserCatalog.AddUser(SelectedUser);
-        }
-
         /// <summary>
         /// En metode der fjerner en bruger
         /// </summary>
         public void RemoveUser()
         {
             UserCatalog.RemoveAt(SelectedIndex);
+            Save();
         }
 
         //Func
@@ -101,13 +92,22 @@ namespace RagnarockApp.UserNicolai.ViewModel
             return SelectedIndex != -1;
         }
 
+
+        //Async
+        /// <summary>
+        /// sørger for brugere bliver gemt
+        /// </summary>
+        private async void Save()
+        {
+            await PersistencyFacade.SaveUsersAsJsonAsync(UserCatalogSingleton.UserInstants.Users);
+        }
+
         //Constructor
         /// <summary>
         /// Initialisere kommandoerne
         /// </summary>
         public EditUserViewModel()
         {
-            _addCommand = new RelayCommand(AddUser);
             _removeCommand = new RelayCommand(RemoveUser,SelectedIndexIsNotSet);
             UserCatalog = UserCatalogSingleton.UserInstants;
         }
