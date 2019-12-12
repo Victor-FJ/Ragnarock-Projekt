@@ -13,6 +13,7 @@ using RagnarockApp.Common;
 using RagnarockApp.EventArsen.View;
 using RagnarockApp.UserNicolai.View;
 using RagnarockApp.QuizVictor.View;
+using RagnarockApp.UserNicolai.Model;
 
 
 namespace RagnarockApp
@@ -24,6 +25,8 @@ namespace RagnarockApp
         private static MainViewModel _instance;
         public static MainViewModel Instance
         { get { return _instance; } }
+        
+        public User ActiveUser { get; set; }
 
         #region Pages
 

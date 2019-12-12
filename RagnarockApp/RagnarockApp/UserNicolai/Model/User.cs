@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.UserNicolai.Model
 {
-    class User
+    public class User
     {
         //Instance field
         private string _name;
