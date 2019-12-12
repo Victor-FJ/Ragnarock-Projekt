@@ -9,9 +9,9 @@ namespace RagnarockApp.UserNicolai.Exeptions
     /// <summary>
     /// Denne constructor bruges til at sige når man ikke har lavet 6 cifre i Id
     /// </summary>
-    public class AddExceptions: Exception
+    public class IdExceptions: Exception
     {
-        public AddExceptions(string message) : base(message)
+        public IdExceptions(string message) : base(message)
         {
 
         }

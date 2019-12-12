@@ -43,9 +43,14 @@ namespace RagnarockApp.UserNicolai.Model
                 Validate(newUser);
                 Users.Add(newUser);
             }
-            catch (AddExceptions adex)
+            catch (IdExceptions adex)
             {
                 MessageDialogHelper.Show(adex.Message, "Du har fået en AddExeption");
+            }
+
+            catch (UserNameAlreadyUsedException adex)
+            {
+                MessageDialogHelper.Show(adex.Message, "Du har fået en UserNameException");
             }
         }
 
@@ -80,10 +85,12 @@ namespace RagnarockApp.UserNicolai.Model
 
         private void Validate(User userAdd)
         {
-            if (userAdd.Id.ToString().Length != 6)
-            {
-                throw new AddExceptions("Der er ikke de rette antal cifre. Du har skrevet " + userAdd.Id.ToString().Length + " cifre");
-            }
+            if (userAdd.Id.ToString().Length != 6) 
+                throw new IdExceptions("Der er ikke de rette antal cifre. Du har skrevet " + userAdd.Id.ToString().Length + " cifre");
+            foreach (User user in Users)
+                if (user.UserName == userAdd.UserName)
+                    throw new UserNameAlreadyUsedException("Brugernavn ikke tilgængeligt");
+
         }
 
     }

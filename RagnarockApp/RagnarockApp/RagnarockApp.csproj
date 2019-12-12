@@ -170,14 +170,18 @@
     <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserNicolai\Exeptions\AddExceptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\IdExceptions.cs" />
     <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
-    <Compile Include="UserNicolai\Exeptions\UserExeptions.cs" />
+    <Compile Include="UserNicolai\Exeptions\UserNameAlreadyUsedException.cs" />
     <Compile Include="UserNicolai\Exeptions\UserNameException.cs" />
     <Compile Include="UserNicolai\Model\User.cs" />
     <Compile Include="UserNicolai\Model\UserCatalogSingleton.cs" />
+    <Compile Include="UserNicolai\ViewModel\CreateUserViewModel.cs" />
     <Compile Include="UserNicolai\ViewModel\LoginUserViewModel.cs" />
     <Compile Include="UserNicolai\ViewModel\EditUserViewModel.cs" />
+    <Compile Include="UserNicolai\View\CreateUserPage.xaml.cs">
+      <DependentUpon>CreateUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserNicolai\View\EditUserPage.xaml.cs">
       <DependentUpon>EditUserPage.xaml</DependentUpon>
     </Compile>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuizVictor\View\PlayQuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserNicolai\View\CreateUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
