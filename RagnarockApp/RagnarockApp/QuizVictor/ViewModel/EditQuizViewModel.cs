@@ -104,6 +104,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
                 QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
                 if (await MessageDialogHelper.ShowWInput($"Are you sure you want to change the name of the quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Change Name?"))
                     QuizPlayerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
+
             }
             catch (ValueEmptyException exception)
             {

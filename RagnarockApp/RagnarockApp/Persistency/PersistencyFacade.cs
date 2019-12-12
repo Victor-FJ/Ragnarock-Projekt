@@ -71,6 +71,7 @@ namespace RagnarockApp.Persistency
         //General Serialize and DeSerialize functions
         private static async Task SerializeObjectFileAsync(string objectString, string fileName)
         {
+            
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(localFile, objectString);
         }
