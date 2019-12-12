@@ -11,6 +11,8 @@ using Windows.UI.Xaml.Controls;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.EventArsen.View;
+using RagnarockApp.Persistency;
+using RagnarockApp.QuizVictor.Model;
 using RagnarockApp.UserNicolai.View;
 using RagnarockApp.QuizVictor.View;
 using RagnarockApp.UserNicolai.Model;
@@ -26,7 +28,19 @@ namespace RagnarockApp
         public static MainViewModel Instance
         { get { return _instance; } }
         
-        public User ActiveUser { get; set; }
+        private User _activeUser;
+
+        public User ActiveUser
+        {
+            get { return _activeUser; }
+            set
+            {
+                _activeUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+         
 
         #region Pages
 
@@ -55,6 +69,7 @@ namespace RagnarockApp
         {
             _instance = this;
             NavToPageCommand = new RelayCommandWParam(NavigateToPage);
+            LoadFiles();
         }
 
         #region MainHandler
@@ -70,6 +85,11 @@ namespace RagnarockApp
         }
 
         #endregion
+
+        private async void LoadFiles()
+        {
+            QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+        }
 
         #region NotifyPropertyChanged
 

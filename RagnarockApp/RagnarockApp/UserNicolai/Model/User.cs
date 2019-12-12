@@ -13,7 +13,7 @@ namespace RagnarockApp.UserNicolai.Model
         private int _id;
         private bool _administrator;
         private string _userName;
-        private int _code;
+        private string _code;
 
         //Properties
         public string Name
@@ -45,7 +45,7 @@ namespace RagnarockApp.UserNicolai.Model
             set { _userName = value; }
         }
 
-        public int Code
+        public string Code
         {
             get { return _code;}
             set { _code = value; }
@@ -58,7 +58,7 @@ namespace RagnarockApp.UserNicolai.Model
 
         }
 
-        public User(string name, int id, bool administrator, string userName, int code)
+        public User(string name, int id, bool administrator, string userName, string code)
         {
             _name = name;
             _id = id;

@@ -18,7 +18,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
     {
         //Property
         public string UserName { get; set; }
-        public int UserCode { get; set; }
+        public string UserCode { get; set; }
 
         public UserCatalogSingleton LoginCatalog { get; set; }
 
@@ -35,11 +35,15 @@ namespace RagnarockApp.UserNicolai.ViewModel
         }
 
         //Action
+        /// <summary>
+        /// Bruges til at identificere hvem der er logget ind som bruger
+        /// </summary>
         public void Login()
         {
             try
             {
-                LoginCatalog.Login(UserName, UserCode);
+                User activeUser = LoginCatalog.Login(UserName, UserCode);
+                MainViewModel.Instance.ActiveUser = activeUser;
             }
             catch (UserNameException upex)
             {
@@ -51,16 +55,13 @@ namespace RagnarockApp.UserNicolai.ViewModel
             }
            
         }
-
+        /// <summary>
+        /// Opretter bruger
+        /// </summary>
         public void OpretBruger()
         {
             MainViewModel.Instance.NavigateToPage(typeof(EditUserPage));
         }
-
-
-
-
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;
