@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
+using RagnarockApp.Persistency;
 using RagnarockApp.QuizVictor.Exceptions;
 using RagnarockApp.QuizVictor.Model;
 using RagnarockApp.QuizVictor.View;
@@ -260,11 +261,11 @@ namespace RagnarockApp.QuizVictor.ViewModel
             QuistionCollection.RemoveAt(SelectedIndex);
         }
 
-        public void SaveQuiz()
+        public async void SaveQuiz()
         {
             QuizToEdit.Quistions = QuistionCollection.ToList();
+            await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizPlayer.Instance.Quizzes);
             MainViewModel.Instance.NavigateBack();
-            //MainViewModel.Instance.NavigateToPage(typeof(EditQuizPage));
         }
 
         public void Cancel()

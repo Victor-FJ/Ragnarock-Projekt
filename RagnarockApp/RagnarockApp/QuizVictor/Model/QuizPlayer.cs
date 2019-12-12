@@ -20,10 +20,6 @@ namespace RagnarockApp.QuizVictor.Model
         private QuizPlayer()
         {
             Quizzes = new List<Quiz>();
-            Quizzes.Add(new Quiz("A test quiz"));
-            Quizzes.Add(new Quiz("Another quiz"));
-            Quizzes[0].Quistions.Add(new Quistion());
-            Quizzes[0].Quistions.Add(new Quistion());
         }
 
         #region QuizHandler
