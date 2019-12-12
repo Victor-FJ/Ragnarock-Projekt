@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.UserNicolai.Model
 {
-    class User
+    public class User
     {
         //Instance field
         private string _name;
@@ -55,7 +55,7 @@ namespace RagnarockApp.UserNicolai.Model
         //Constructor
         public User()
         {
-            Administrator = false;
+
         }
 
         public User(string name, int id, bool administrator, string userName, int code)
