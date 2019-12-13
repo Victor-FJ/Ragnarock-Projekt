@@ -38,8 +38,12 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" Spacing="20">
                 <TextBlock Text="Spil en quiz" FontSize="24" Style="{StaticResource TextBlockStyle}"/>
+                <ComboBox ItemsSource="{Binding QuizPlayerInstance.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" HorizontalAlignment="Center" Width="200">
+
+                </ComboBox>
+                <Button Content="Play Quiz" Style="{StaticResource ButtonStyle}"/>
             </StackPanel>
         </Grid>
     </Grid>
