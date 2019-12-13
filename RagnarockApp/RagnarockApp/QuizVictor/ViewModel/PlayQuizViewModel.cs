@@ -9,6 +9,7 @@ using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.QuizVictor.Model;
+using RagnarockApp.QuizVictor.View;
 
 namespace RagnarockApp.QuizVictor.ViewModel
 {
@@ -50,7 +51,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public void PlayQuiz()
         {
             QuizPlayerInstance.MarkedQuiz = SelectedQuiz;
-            MainViewModel.Instance.NavigateToPage(typeof());
+            MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
         }
 
         #endregion

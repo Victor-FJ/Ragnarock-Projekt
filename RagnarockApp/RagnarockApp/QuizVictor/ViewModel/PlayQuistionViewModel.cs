@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.QuizVictor.ViewModel
 {
-    class PlayQuistionViewModel
+    public class PlayQuistionViewModel
     {
     }
 }
