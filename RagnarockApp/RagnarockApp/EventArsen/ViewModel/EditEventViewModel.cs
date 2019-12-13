@@ -71,9 +71,10 @@ namespace RagnarockApp.EventArsen.ViewModel
         public void UpdateEvent()
         {
             Events.Update(SelectedIndex, SelectedEvent);
+            Save();
         }
 
-        public async void Save()
+        private async void Save()
         {
             await PersistencyFacade.SaveEventsAsJsonAsync(EventManagerSingleton.Instance.Events);
         }
