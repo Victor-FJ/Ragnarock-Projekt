@@ -43,7 +43,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="BrugerNavn" Foreground="White"></TextBlock>
-                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedUser.UserName}"></TextBox>
+                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedUser.UserName, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="Password" Foreground="White"></TextBlock>
