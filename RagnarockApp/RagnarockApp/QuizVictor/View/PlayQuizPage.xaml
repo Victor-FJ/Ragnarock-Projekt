@@ -26,25 +26,19 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Width" Value="110"/>
         </Style>
-        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
     </Page.Resources>
 
-    <Grid>
-        <Grid Background="DarkSeaGreen">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel VerticalAlignment="Center" Spacing="20">
-                <TextBlock Text="Spil en quiz" FontSize="24" Style="{StaticResource TextBlockStyle}"/>
-                <ComboBox ItemsSource="{Binding QuizPlayerInstance.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" HorizontalAlignment="Center" Width="200">
+    <Grid Background="DarkSeaGreen">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" Spacing="20">
+            <TextBlock Text="Spil en quiz" FontSize="24" Style="{StaticResource TextBlockStyle}"/>
+            <ComboBox ItemsSource="{Binding Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" HorizontalAlignment="Center" Width="200" PlaceholderText="Select Quiz">
 
-                </ComboBox>
-                <Button Content="Play Quiz" Style="{StaticResource ButtonStyle}"/>
-            </StackPanel>
-        </Grid>
+            </ComboBox>
+            <Button Content="Play Quiz" Command="{Binding PlayQuizCommand}" Style="{StaticResource ButtonStyle}"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -18,12 +18,14 @@ namespace RagnarockApp.Common
 
         public void GoBack()
         {
-            _frame.GoBack();
+            if (_frame.CanGoBack)
+                _frame.GoBack();
         }
 
         public void GoForward()
         {
-            _frame.GoForward();
+            if (_frame.CanGoForward)
+                _frame.GoForward();
         }
 
         public bool Navigate<T>(object parameter = null)

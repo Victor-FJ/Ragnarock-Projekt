@@ -40,13 +40,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding NavBackCommand}" Background="Transparent" Width="50" Height="50">
+            <Button Command="{Binding NavBackCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
                 <StackPanel>
                     <TextBlock Text="&#xE760;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
                     <TextBlock Text="Tilbage" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding NavForwardCommand}" Background="Transparent" Width="50" Height="50">
+            <Button Command="{Binding NavForwardCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
                 <StackPanel>
                     <TextBlock Text="&#xE761;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
                     <TextBlock Text="Frem" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>

@@ -79,12 +79,9 @@ namespace RagnarockApp
         public ICommand NavBackCommand { get; set; }
         public ICommand NavForwardCommand { get; set; }
 
-        public MainViewModel(NavigationService navService) : this()
+        public MainViewModel(NavigationService navService)
         {
             _navigationService = navService;
-        }
-        public MainViewModel()
-        {
             _instance = this;
             NavToPageCommand = new RelayCommandWParam(NavigateToPage);
             NavBackCommand = new RelayCommand(NavigateBack);

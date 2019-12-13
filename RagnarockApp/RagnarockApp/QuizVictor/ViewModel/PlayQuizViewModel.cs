@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,7 +16,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 {
     public class PlayQuizViewModel : INotifyPropertyChanged
     {
-        public QuizPlayer QuizPlayerInstance { get; set; }
+        public ObservableCollection<Quiz> Quizzes { get; set; }
 
         private Quiz _selectedQuiz;
         public Quiz SelectedQuiz
@@ -33,7 +34,10 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public PlayQuizViewModel()
         {
-            QuizPlayerInstance = QuizPlayer.Instance;
+            Quizzes = new ObservableCollection<Quiz>();
+            foreach (Quiz quiz in QuizPlayer.Instance.Quizzes)
+                if (quiz.Quistions.Count > 0)
+                    Quizzes.Add(quiz);
             PlayQuizCommand = new RelayCommand(PlayQuiz, QuizIsSelected);
         }
 
@@ -50,7 +54,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public void PlayQuiz()
         {
-            QuizPlayerInstance.MarkedQuiz = SelectedQuiz;
+            QuizPlayer.Instance.MarkedQuiz = SelectedQuiz;
             MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
         }
 

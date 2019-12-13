@@ -20,5 +20,10 @@ namespace RagnarockApp.QuizVictor.Model
             Quistions = new List<Quistion>();
             CreatedDate = DateTimeOffset.Now;
         }
+
+        public override string ToString()
+        {
+            return QuizName;
+        }
     }
 }
