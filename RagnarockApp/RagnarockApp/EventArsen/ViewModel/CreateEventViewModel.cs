@@ -9,6 +9,7 @@ using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.EventArsen.Model;
+using RagnarockApp.Persistency;
 
 namespace RagnarockApp.EventArsen.ViewModel
 {
@@ -46,6 +47,12 @@ namespace RagnarockApp.EventArsen.ViewModel
         public void CreateEvent()
         {
             Events.Create(SelectedEvent);
+            Save();
+        }
+
+        private async void Save()
+        {
+            await PersistencyFacade.SaveEventsAsJsonAsync(EventManagerSingleton.Instance.Events);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
