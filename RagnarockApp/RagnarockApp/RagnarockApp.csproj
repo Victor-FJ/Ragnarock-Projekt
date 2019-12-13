@@ -161,12 +161,16 @@
     <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuistionViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
+    <Compile Include="QuizVictor\ViewModel\PlayQuistionViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\PlayQuizViewModel.cs" />
     <Compile Include="QuizVictor\View\EditQuistionPage.xaml.cs">
       <DependentUpon>EditQuistionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuizVictor\View\EditQuizPage.xaml.cs">
       <DependentUpon>EditQuizPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuizVictor\View\PlayQuistionPage.xaml.cs">
+      <DependentUpon>PlayQuistionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuizVictor\View\EditQuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuizVictor\View\PlayQuistionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
