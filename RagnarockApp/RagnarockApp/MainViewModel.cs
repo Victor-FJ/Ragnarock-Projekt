@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
+using RagnarockApp.EventArsen.Model;
 using RagnarockApp.EventArsen.View;
 using RagnarockApp.Persistency;
 using RagnarockApp.QuizVictor.Model;
@@ -112,23 +113,39 @@ namespace RagnarockApp
 
         private async void LoadFiles()
         {
+            string message = "";
+
+            //Loading quizzes
             try
             {
                 QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
             }
             catch (FileNotFoundException)
             {
-                MessageDialogHelper.Show("Loading for the first time?", "File not found!");
+                message += "\nQuizzes";
             }
 
+            //Loading users
             try
             {
                 UserCatalogSingleton.UserInstants.Users = await PersistencyFacade.LoadUsersFromJsonAsync();
             }
             catch (FileNotFoundException)
             {
-                MessageDialogHelper.Show("Loading for the first time?", "File not found!");
+                message += "\nUsers";
             }
+
+            //Loading events
+            try
+            {
+                EventManagerSingleton.Instance.Events = await PersistencyFacade.LoadEventsFromJsonAsync();
+            }
+            catch (FileNotFoundException)
+            {
+                message += "\nEvents";
+            }
+
+            MessageDialogHelper.Show($"The following files did not load:{message}\n\nTry adding some in the program to fix", "File did not load");
         }
 
         #region NotifyPropertyChanged
