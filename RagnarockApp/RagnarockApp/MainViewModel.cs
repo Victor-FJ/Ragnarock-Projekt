@@ -96,6 +96,15 @@ namespace RagnarockApp
             {
                 MessageDialogHelper.Show("Loading for the first time?", "File not found!");
             }
+
+            try
+            {
+                UserCatalogSingleton.UserInstants.Users = await PersistencyFacade.LoadUsersFromJsonAsync();
+            }
+            catch (FileNotFoundException)
+            {
+                MessageDialogHelper.Show("Loading for the first time?", "File not found!");
+            }
         }
 
         #region NotifyPropertyChanged
