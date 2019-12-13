@@ -12,7 +12,7 @@ namespace RagnarockApp.Converters
             _array = value as string[];
             if (_array == null)
                 return null;
-            int index = Int32.Parse((string) parameter);
+            int index = Int32.Parse((string)parameter);
             return _array[index];
         }
 

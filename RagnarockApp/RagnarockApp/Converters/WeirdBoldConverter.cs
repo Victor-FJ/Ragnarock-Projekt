@@ -7,16 +7,19 @@ using Windows.UI.Xaml.Data;
 
 namespace RagnarockApp.Converters
 {
-    public class SomeConverter : IValueConverter
+    public class WeirdBoldConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             // The value parameter is the data from the source object.
-            if (value != null)
-            {
-                return "Hej";
-            }
-            return "Åhh";
+            if (value == null)
+                return null;
+            int boldIndex = (int) value;
+            int index = Int32.Parse((string) parameter);
+            if (boldIndex == index)
+                return "Bold";
+            else
+                return "Normal";
         }
 
         // ConvertBack is not implemented for a OneWay binding.
