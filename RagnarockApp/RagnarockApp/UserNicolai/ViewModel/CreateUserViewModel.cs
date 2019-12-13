@@ -13,15 +13,13 @@ using RagnarockApp.UserNicolai.Model;
 
 namespace RagnarockApp.UserNicolai.ViewModel
 {
-    class CreateUserViewModel: INotifyPropertyChanged
+    public class CreateUserViewModel: INotifyPropertyChanged
     {
 
 
         //Instance
         private User _selectedUser;
-        private int _selectedIndex;
         private ICommand _addCommand;
-
 
 
         //Property
@@ -64,8 +62,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
         {
             _addCommand = new RelayCommand(AddUser);
             UserCatalog = UserCatalogSingleton.UserInstants;
+            SelectedUser = new User();
         }
-
 
 
         //Async
