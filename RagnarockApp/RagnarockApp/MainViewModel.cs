@@ -144,8 +144,8 @@ namespace RagnarockApp
             {
                 message += "\nEvents";
             }
-
-            MessageDialogHelper.Show($"The following files did not load:{message}\n\nTry adding some in the program to fix", "File did not load");
+            if (message != "")
+                MessageDialogHelper.Show($"The following files did not load:{message}\n\nTry adding some in the program to fix", "File did not load");
         }
 
         #region NotifyPropertyChanged
