@@ -16,8 +16,6 @@ namespace RagnarockApp.EventArsen.ViewModel
     {
         public EventManagerSingleton Events { get; set; }
 
-        public Event SelectedEvent { get; set; }
-
         public EventViewModel()
         {
             Events = EventManagerSingleton.Instance;

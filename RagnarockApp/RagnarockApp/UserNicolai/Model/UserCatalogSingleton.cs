@@ -10,10 +10,10 @@ using RagnarockApp.UserNicolai.Exeptions;
 
 namespace RagnarockApp.UserNicolai.Model
 {
-    class UserCatalogSingleton
+    public class UserCatalogSingleton
     {
         private static UserCatalogSingleton _userInstants = new UserCatalogSingleton();
-        public ObservableCollection<User> Users { get; }
+        public ObservableCollection<User> Users { get; set; }
 
         //Property
         public static UserCatalogSingleton UserInstants

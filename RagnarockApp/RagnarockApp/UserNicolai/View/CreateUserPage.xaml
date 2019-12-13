@@ -6,10 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:RagnarockApp.Converters"
+    xmlns:viewModel="using:RagnarockApp.UserNicolai.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext>viewModel:CreateUserViewModel</Page.DataContext>
+    <Page.DataContext>
+        <viewModel:CreateUserViewModel/>
+    </Page.DataContext>
 
     <Page.Resources>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">

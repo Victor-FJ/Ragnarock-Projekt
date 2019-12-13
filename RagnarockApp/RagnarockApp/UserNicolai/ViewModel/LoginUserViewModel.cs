@@ -60,7 +60,7 @@ namespace RagnarockApp.UserNicolai.ViewModel
         /// </summary>
         public void OpretBruger()
         {
-            MainViewModel.Instance.NavigateToPage(typeof(EditUserPage));
+            MainViewModel.Instance.NavigateToPage(typeof(CreateUserPage));
         }
 
 
