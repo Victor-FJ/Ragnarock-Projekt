@@ -129,8 +129,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
     <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
-    <Compile Include="Converters\IndexToNumberConverter.cs" />
-    <Compile Include="Converters\TrueFetureConverter.cs" />
+    <Compile Include="Converters\WeirdBoldConverter.cs" />
     <Compile Include="EventArsen\Exceptions\IsNotEventException.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
@@ -158,6 +157,7 @@
     <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueAlreadyExistException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueEmptyException.cs" />
+    <Compile Include="QuizVictor\Model\AnsweredQuistion.cs" />
     <Compile Include="QuizVictor\Model\PlaySession.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\Quiz.cs" />

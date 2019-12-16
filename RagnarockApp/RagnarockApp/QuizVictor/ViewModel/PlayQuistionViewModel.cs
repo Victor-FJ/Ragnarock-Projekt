@@ -116,14 +116,14 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             if (QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions.Count > ++QuizPlayer.MarkedQuistionNo)
                 MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
-            else;
+            //Else
             //Navigation to end page
         }
 
         public void Answer(object answerChoice)
         {
             int answerChoice2 = Int32.Parse((string) answerChoice);
-            QuizPlayer.CurrentPlaySession.AnswerList.Add(answerChoice2);
+            QuizPlayer.CurrentPlaySession.AnswerQuistions.Add(new AnsweredQuistion(MarkedQuistion, answerChoice2));
             if (answerChoice2 == MarkedQuistion.Answer)
                 ChosenAnswer[answerChoice2] = 2;
             else
