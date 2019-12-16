@@ -27,7 +27,14 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
-        <converters:AdminConverter x:Key="AdminConverter"/>
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Width" Value="135"></Setter>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Page.Resources>
 
     <Grid Background="DarkBlue">
@@ -47,7 +54,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource TextBlockStyle}" Text="Password" Foreground="White"></TextBlock>
-                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding SelectedUser.Code}"></TextBox>
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding SelectedUser.Code, Mode=TwoWay}"></PasswordBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -56,6 +63,7 @@
             </StackPanel>
 
             <Button Content="Add User" Command="{Binding AddCommand}" Foreground="White" Background="Green"></Button>
+            <TextBlock Text="{Binding ConfirmText2}" FontSize="20" Foreground="Yellow"></TextBlock>
         </StackPanel>
     </Grid>
 

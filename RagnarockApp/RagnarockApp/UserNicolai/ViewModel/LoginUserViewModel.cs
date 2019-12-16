@@ -34,6 +34,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
             LoginCatalog = UserCatalogSingleton.UserInstants;
         }
 
+        public string ConfirmText { get; set; }
+
         //Action
         /// <summary>
         /// Bruges til at identificere hvem der er logget ind som bruger
@@ -44,6 +46,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
             {
                 User activeUser = LoginCatalog.Login(UserName, UserCode);
                 MainViewModel.Instance.ActiveUser = activeUser;
+                ConfirmText = "Du er nu logget ind";
+                OnPropertyChanged(nameof(ConfirmText));
             }
             catch (UserNameException upex)
             {
