@@ -30,6 +30,7 @@
         <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="Width" Value="200"></Setter>
         </Style>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter" FallbackValue="Collapsed" TrueValue="Visible"/>
     </Page.Resources>
 
     <Grid Background="DarkBlue">
@@ -53,8 +54,8 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Adm." Foreground="White"></TextBlock>
-                <CheckBox IsChecked="{Binding SelectedUser.Administrator, Mode=TwoWay}"/>
+                <TextBlock Visibility="{Binding IsAdmin, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Style="{StaticResource TextBlockStyle}" Text="Adm." Foreground="White"></TextBlock>
+                <CheckBox Visibility="{Binding IsAdmin, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" IsChecked="{Binding SelectedUser.Administrator, Mode=TwoWay}"/>
             </StackPanel>
 
             <Button Content="Add User" Command="{Binding AddCommand}" Foreground="White" Background="Green"></Button>

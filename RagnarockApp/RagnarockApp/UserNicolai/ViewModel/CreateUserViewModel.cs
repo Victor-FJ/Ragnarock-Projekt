@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -21,10 +22,22 @@ namespace RagnarockApp.UserNicolai.ViewModel
         //Instance
         private User _selectedUser;
         private ICommand _addCommand;
-
+        private int _isAdmin;
 
         //Property
         public UserCatalogSingleton UserCatalog { get; set; }
+
+
+        public int IsAdmin
+        {
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value; 
+                OnPropertyChanged();
+            }
+        }
+
 
         public User SelectedUser
         {
@@ -69,6 +82,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
             _addCommand = new RelayCommand(AddUser);
             UserCatalog = UserCatalogSingleton.UserInstants;
             SelectedUser = new User();
+            if (MainViewModel.Instance != null)
+                IsAdmin = MainViewModel.Instance.IsAdmin;
         }
 
 

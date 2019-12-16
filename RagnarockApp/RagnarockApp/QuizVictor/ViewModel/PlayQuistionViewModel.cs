@@ -116,7 +116,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             if (QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions.Count > ++QuizPlayer.MarkedQuistionNo)
                 MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
-            else ;
+            else;
             //Navigation to end page
         }
 
