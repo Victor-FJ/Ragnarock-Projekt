@@ -9,11 +9,12 @@ using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.Persistency;
+using RagnarockApp.UserNicolai.Exeptions;
 using RagnarockApp.UserNicolai.Model;
 
 namespace RagnarockApp.UserNicolai.ViewModel
 {
-    public class CreateUserViewModel: INotifyPropertyChanged
+    public class CreateUserViewModel : INotifyPropertyChanged
     {
 
 
@@ -37,6 +38,9 @@ namespace RagnarockApp.UserNicolai.ViewModel
             }
         }
 
+        public UserCatalogSingleton CreateCatalog { get; set; }
+
+        public string ConfirmText2 { get; set; }
 
         public ICommand AddCommand
         {
@@ -52,6 +56,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
         {
             UserCatalog.AddUser(SelectedUser);
             Save();
+            ConfirmText2 = "Du er nu oprettet som bruger";
+            OnPropertyChanged(nameof(ConfirmText2));
         }
 
         //Constructor

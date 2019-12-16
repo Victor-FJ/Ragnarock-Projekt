@@ -37,9 +37,13 @@ namespace RagnarockApp
             set
             {
                 _activeUser = value;
+                IsAdmin = _activeUser.Administrator;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsAdmin));
             }
         }
+
+        public bool IsAdmin { get; set; }
 
         private string _title;
 
