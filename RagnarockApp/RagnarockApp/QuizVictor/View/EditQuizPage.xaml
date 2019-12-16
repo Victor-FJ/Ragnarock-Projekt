@@ -51,7 +51,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizPlayerInstance.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
+        <ListView Background="#FF63B7DE" ItemsSource="{Binding QuizManagerInstance.Quizzes}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" Grid.RowSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="3,6,3,6">

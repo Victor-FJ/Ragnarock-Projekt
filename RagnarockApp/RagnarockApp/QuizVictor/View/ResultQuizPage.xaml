@@ -1,0 +1,103 @@
+﻿<Page
+    x:Class="RagnarockApp.QuizVictor.View.ResultQuizPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RagnarockApp.QuizVictor.View"
+    xmlns:viewModel="using:RagnarockApp.QuizVictor.ViewModel"
+    xmlns:converters="using:RagnarockApp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="850" d:DesignHeight="550">
+
+    <Page.DataContext>
+        <viewModel:ResultQuizViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style x:Key="ButtonGridStyle" TargetType="Grid">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderThickness" Value="5"/>
+        </Style>
+        <Style x:Key="ButtonText1Style" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="FuncButtonStyle" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="70"/>
+        </Style>
+        <Style x:Key="MenuNavIconStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Spacing" Value="30"/>
+        </Style>
+        <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
+        <converters:CountListConverter x:Key="CountListConverter"/>
+        <converters:IndexToNumberConverter x:Key="IndexToNumberConverter"/>
+    </Page.Resources>
+
+    <Grid Background="#FF518551">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Finished" FontSize="64" Grid.ColumnSpan="3" Style="{StaticResource TextBlockStyle}"/>
+        <ListView Grid.Column="1" Grid.Row="1" Background="DarkSeaGreen" ItemsSource="{Binding QuistionCollection}" SelectedItem="{Binding SelectedQuistion, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" Grid.RowSpan="2" TabIndex="13">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="3,6,3,6">
+                        <TextBlock Text="{Binding TheQuistion}" FontSize="16"/>
+                        <TextBlock>
+                                <Run Text="Hint: "/>
+                                <Run Text="{Binding Hint}"/>
+                        </TextBlock>
+                        <TextBlock FontSize="10">
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=0}"/>
+                                <Run Text="   "/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}"/>
+                                <Run Text="   "/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=2}"/>
+                                <Run Text="   "/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=3}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

@@ -24,7 +24,9 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
-        
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Width" Value="200"></Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="DarkBlue">
@@ -34,12 +36,13 @@
                 <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Kode" Foreground="White"></TextBlock>
-                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding UserCode, Mode=TwoWay}"></TextBox>
+                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Password" Foreground="White"></TextBlock>
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding UserCode, Mode=TwoWay}"></PasswordBox>
             </StackPanel>
 
             <Button Content="Login" FontSize="30" Foreground="Black" Background="LightBlue" Command="{Binding LoginCommand}"></Button>
             <Button Content="Opret Bruger" FontSize="30" Foreground="Black" Background="LightBlue" Command="{Binding OpretBrugerCommand}"></Button>
+            <TextBlock Text="{Binding ConfirmText}" Foreground="Yellow" FontSize="20"></TextBlock>
         </StackPanel>
     </Grid>
 

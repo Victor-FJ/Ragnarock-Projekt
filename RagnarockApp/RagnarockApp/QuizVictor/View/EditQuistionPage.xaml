@@ -54,7 +54,7 @@
         <converters:CountListConverter x:Key="CountListConverter"/>
         <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
         <converters:IndexOfBoolArrayConverter x:Key="IndexOfBoolArrayConverter"/>
-        <converters:WeirdBoldConverter x:Key="WeirdBoldConverter"/>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter" TrueValue="Bold" FallbackValue="Normal"/>
     </Page.Resources>
 
     <Grid>
@@ -123,13 +123,13 @@
                                 <Run Text="{Binding Hint}"/>
                             </TextBlock>
                             <TextBlock FontSize="10">
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="{Binding Answer, Converter={StaticResource WeirdBoldConverter}, ConverterParameter=0}"/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=0}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="{Binding Answer, Converter={StaticResource WeirdBoldConverter}, ConverterParameter=1}"/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="{Binding Answer, Converter={StaticResource WeirdBoldConverter}, ConverterParameter=2}"/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=2}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="{Binding Answer, Converter={StaticResource WeirdBoldConverter}, ConverterParameter=3}"/>
+                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=3}"/>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>

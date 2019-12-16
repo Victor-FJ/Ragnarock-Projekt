@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -37,9 +38,13 @@ namespace RagnarockApp
             set
             {
                 _activeUser = value;
+                IsAdmin = (_activeUser.Administrator) ? 1 : 0;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsAdmin));
             }
         }
+
+        public int IsAdmin { get; set; }
 
         private string _title;
 
@@ -115,7 +120,7 @@ namespace RagnarockApp
             //Loading quizzes
             try
             {
-                QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+                QuizManager.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
             }
             catch (FileNotFoundException)
             {
@@ -125,7 +130,14 @@ namespace RagnarockApp
             //Loading users
             try
             {
-                UserCatalogSingleton.UserInstants.Users = await PersistencyFacade.LoadUsersFromJsonAsync();
+                ObservableCollection<User> users = await PersistencyFacade.LoadUsersFromJsonAsync();
+                if (users == null)
+                    throw new FileLoadException("Found User file but its empty");
+                UserCatalogSingleton.UserInstants.Users = users;
+            }
+            catch (FileLoadException ex)
+            {
+                message += "\n" + ex;
             }
             catch (FileNotFoundException)
             {

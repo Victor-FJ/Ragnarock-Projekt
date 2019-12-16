@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
 using RagnarockApp.Persistency;
+using RagnarockApp.UserNicolai.Exeptions;
 using RagnarockApp.UserNicolai.Model;
 
 namespace RagnarockApp.UserNicolai.ViewModel
 {
-    public class CreateUserViewModel: INotifyPropertyChanged
+    public class CreateUserViewModel : INotifyPropertyChanged
     {
 
 
         //Instance
         private User _selectedUser;
         private ICommand _addCommand;
-
+        private int _isAdmin;
 
         //Property
         public UserCatalogSingleton UserCatalog { get; set; }
+
+
+        public int IsAdmin
+        {
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value; 
+                OnPropertyChanged();
+            }
+        }
+
 
         public User SelectedUser
         {
@@ -37,6 +51,9 @@ namespace RagnarockApp.UserNicolai.ViewModel
             }
         }
 
+        public UserCatalogSingleton CreateCatalog { get; set; }
+
+        public string ConfirmText2 { get; set; }
 
         public ICommand AddCommand
         {
@@ -52,6 +69,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
         {
             UserCatalog.AddUser(SelectedUser);
             Save();
+            ConfirmText2 = "Du er nu oprettet som bruger";
+            OnPropertyChanged(nameof(ConfirmText2));
         }
 
         //Constructor
@@ -63,6 +82,8 @@ namespace RagnarockApp.UserNicolai.ViewModel
             _addCommand = new RelayCommand(AddUser);
             UserCatalog = UserCatalogSingleton.UserInstants;
             SelectedUser = new User();
+            if (MainViewModel.Instance != null)
+                IsAdmin = MainViewModel.Instance.IsAdmin;
         }
 
 

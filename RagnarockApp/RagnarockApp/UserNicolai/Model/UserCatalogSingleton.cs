@@ -13,7 +13,9 @@ namespace RagnarockApp.UserNicolai.Model
     public class UserCatalogSingleton
     {
         private static UserCatalogSingleton _userInstants = new UserCatalogSingleton();
-        public ObservableCollection<User> Users { get; set; }
+
+        public ObservableCollection<User> Users
+        { get; set; }
 
         //Property
         public static UserCatalogSingleton UserInstants
@@ -28,9 +30,7 @@ namespace RagnarockApp.UserNicolai.Model
         private UserCatalogSingleton()
         {
             Users = new ObservableCollection<User>();
-            Users.Add(new User("Grim", 123575, true, "Servant", "664848"));
-            Users.Add(new User("Mandy", 489653, false, "Leader", "11112011"));
-            Users.Add(new User("Billy", 645872, false, "Brainless", "11111111"));
+            Users.Add(new User("Nicolai", 123456, true, "nico", "123456"));
         }
 
         //Methods

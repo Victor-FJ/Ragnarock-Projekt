@@ -205,7 +205,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public EditQuistionViewModel()
         {
-            QuizToEdit = QuizPlayer.Instance.MarkedQuiz;
+            QuizToEdit = QuizManager.Instance.MarkedQuiz;
             AddQuistionCommand = new RelayCommand(AddQuistion, QuistionIsValid);
             UpdateQuistionCommand = new RelayCommand(UpdateQuistion, QuistionIsSelectedAndValid);
             DeleteQuistionCommand = new RelayCommand(DeleteQuistion, QuistionIsSelected);
@@ -266,7 +266,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public async void SaveQuiz()
         {
             QuizToEdit.Quistions = QuistionCollection.ToList();
-            await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizPlayer.Instance.Quizzes);
+            await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizManager.Instance.Quizzes);
             MainViewModel.Instance.NavigateBack();
         }
 

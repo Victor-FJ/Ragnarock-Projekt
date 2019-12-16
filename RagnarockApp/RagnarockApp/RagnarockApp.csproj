@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AdminConverter.cs" />
+    <Compile Include="Converters\ComplexFetureConverter.cs" />
     <Compile Include="Converters\CountListConverter.cs" />
     <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
     <Compile Include="Converters\IndexOfArrayConverter.cs" />
@@ -128,8 +129,8 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RelayCommandWParam.cs" />
     <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
-    <Compile Include="Converters\WeirdBoldConverter.cs" />
-    <Compile Include="EventArsen\Exceptions\DateNotAvailableException.cs" />
+    <Compile Include="Converters\IndexToNumberConverter.cs" />
+    <Compile Include="Converters\TrueFetureConverter.cs" />
     <Compile Include="EventArsen\Exceptions\IsNotEventException.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
     <Compile Include="EventArsen\Model\EventManagerSingleton.cs" />
@@ -157,13 +158,17 @@
     <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueAlreadyExistException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueEmptyException.cs" />
+    <Compile Include="QuizVictor\Model\AnsweredQuistion.cs" />
+    <Compile Include="QuizVictor\Model\PlaySession.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\Quiz.cs" />
+    <Compile Include="QuizVictor\Model\QuizManager.cs" />
     <Compile Include="QuizVictor\Model\QuizPlayer.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuistionViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\EditQuizViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\PlayQuistionViewModel.cs" />
     <Compile Include="QuizVictor\ViewModel\PlayQuizViewModel.cs" />
+    <Compile Include="QuizVictor\ViewModel\ResultQuizViewModel.cs" />
     <Compile Include="QuizVictor\View\EditQuistionPage.xaml.cs">
       <DependentUpon>EditQuistionPage.xaml</DependentUpon>
     </Compile>
@@ -175,6 +180,9 @@
     </Compile>
     <Compile Include="QuizVictor\View\PlayQuizPage.xaml.cs">
       <DependentUpon>PlayQuizPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuizVictor\View\ResultQuizPage.xaml.cs">
+      <DependentUpon>ResultQuizPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserNicolai\Exeptions\IdExceptions.cs" />
     <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
@@ -246,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuizVictor\View\PlayQuizPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuizVictor\View\ResultQuizPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
