@@ -158,6 +158,7 @@
     <Compile Include="QuizVictor\Exceptions\IsNotQuistionException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueAlreadyExistException.cs" />
     <Compile Include="QuizVictor\Exceptions\ValueEmptyException.cs" />
+    <Compile Include="QuizVictor\Model\AnsweredQuistion.cs" />
     <Compile Include="QuizVictor\Model\PlaySession.cs" />
     <Compile Include="QuizVictor\Model\Quistion.cs" />
     <Compile Include="QuizVictor\Model\Quiz.cs" />

@@ -11,7 +11,7 @@ namespace RagnarockApp.QuizVictor.Model
     {
         public Quiz PlayedQuiz { get; set; }
         public User PlayedUser { get; set; }
-        public List<int> AnswerList { get; set; }
+        public List<AnsweredQuistion> AnswerQuistions { get; set; }
 
         public bool Used50 { get; set; }
         public bool UsedHint { get; set; }
@@ -21,7 +21,7 @@ namespace RagnarockApp.QuizVictor.Model
         {
             PlayedQuiz = playedQuiz;
             PlayedUser = playedUser;
-            AnswerList = new List<int>();
+            AnswerQuistions = new List<AnsweredQuistion>();
         }
     }
 }
