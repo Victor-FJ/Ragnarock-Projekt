@@ -35,13 +35,13 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public PlayQuizViewModel()
         {
             Quizzes = new ObservableCollection<Quiz>();
-            foreach (Quiz quiz in QuizPlayer.Instance.Quizzes)
+            foreach (Quiz quiz in QuizManager.Instance.Quizzes)
                 if (quiz.Quistions.Count > 0)
                     Quizzes.Add(quiz);
             PlayQuizCommand = new RelayCommand(PlayQuiz, QuizIsSelected);
         }
 
-        #region EditQuizHandler
+        #region PlayQuizHandler
 
         //Functions
 
@@ -54,7 +54,8 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public void PlayQuiz()
         {
-            QuizPlayer.Instance.MarkedQuiz = SelectedQuiz;
+            QuizPlayer.Instance.CurrentPlaySession = new PlaySession(SelectedQuiz, MainViewModel.Instance.ActiveUser);
+            QuizPlayer.Instance.MarkedQuistionNo = 0;
             MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
         }
 

@@ -4,10 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp.QuizVictor.View"
     xmlns:viewModel="using:RagnarockApp.QuizVictor.ViewModel"
+    xmlns:converters="using:RagnarockApp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="500">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="850" d:DesignHeight="550">
 
     <Page.DataContext>
         <viewModel:PlayQuistionViewModel/>
@@ -22,17 +23,49 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Width" Value="350"/>
             <Setter Property="Height" Value="50"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style x:Key="ButtonGridStyle" TargetType="Grid">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderThickness" Value="5"/>
+        </Style>
+        <Style x:Key="ButtonText1Style" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="FuncButtonStyle" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="70"/>
+        </Style>
+        <Style x:Key="MenuNavIconStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="FontSize" Value="25"/>
         </Style>
         <Style x:Key="StackPanelStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Spacing" Value="30"/>
         </Style>
+        <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
+        <converters:CountListConverter x:Key="CountListConverter"/>
+        <converters:IndexToNumberConverter x:Key="IndexToNumberConverter"/>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter" TrueValue="Black" FallbackValue="Transparent"/>
+        <converters:ComplexFetureConverter x:Key="ComplexFetureConverter" FallbackValue="Transparent" Value1="Red" Value2="Green"/>
     </Page.Resources>
 
     <Grid Background="DarkSeaGreen">
@@ -46,15 +79,81 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.ColumnSpan="3" Text="Et spørgsmål her tak" FontSize="35" Style="{StaticResource TextBlockStyle}"/>
+        <StackPanel Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <TextBlock Text="{Binding MarkedQuistion.TheQuistion}" FontSize="35" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="{Binding HintBox}" FontSize="20" Style="{StaticResource TextBlockStyle}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Spacing="10">
+            <Button Command="{Binding HalfAnswerOptCommand}" Style="{StaticResource FuncButtonStyle}">
+                <StackPanel>
+                    <TextBlock Text="&#xE7C6;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="50/50" Style="{StaticResource TextBlockStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding DisplayHintCommand}" Style="{StaticResource FuncButtonStyle}">
+                <StackPanel>
+                    <TextBlock Text="&#xEA80;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="Hint" Style="{StaticResource TextBlockStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding ShowStatisticsCommand}" Style="{StaticResource FuncButtonStyle}">
+                <StackPanel>
+                    <TextBlock Text="&#xE716;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="Statistik" Style="{StaticResource TextBlockStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+            <Button Command="{Binding ContinueCommand}" Style="{StaticResource FuncButtonStyle}" Height="50" Width="150" Margin="0,0,0,15">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock Text="Fortsæt" FontSize="16" Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock Text="&#xE72A;" Style="{StaticResource MenuNavIconStyle}"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Text="{Binding QuizPlayer.CurrentPlaySession.PlayedQuiz.QuizName}" FontSize="16" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}">
+                <Run Text="Spørgsmål"/>
+                <Run Text="{Binding QuizPlayer.MarkedQuistionNo, Converter={StaticResource IndexToNumberConverter}}"/>
+                <Run Text="ud af"/>
+                <Run Text="{Binding QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions, Converter={StaticResource CountListConverter}}"/>
+            </TextBlock>
+        </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Spacing="30">
             <StackPanel Style="{StaticResource StackPanelStyle}">
-                <Button Content="Test" Style="{StaticResource ButtonStyle}"/>
-                <Button Content="Test" Style="{StaticResource ButtonStyle}"/>
+                <Button Command="{Binding AnswerOpt1Command}" CommandParameter="0" Style="{StaticResource ButtonStyle}">
+                    <Grid BorderBrush="{Binding CorrectAnswer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=0}" Background="{Binding ChosenAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=0}" Style="{StaticResource ButtonGridStyle}">
+                        <TextBlock Style="{StaticResource ButtonText1Style}">
+                            <Run Text="A: " FontWeight="Bold"/>
+                            <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="Normal"></Run>
+                        </TextBlock>
+                    </Grid>
+                </Button>
+                <Button Command="{Binding AnswerOpt2Command}" CommandParameter="1" Style="{StaticResource ButtonStyle}">
+                    <Grid BorderBrush="{Binding CorrectAnswer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Background="{Binding ChosenAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=1}" Style="{StaticResource ButtonGridStyle}">
+                        <TextBlock Style="{StaticResource ButtonText1Style}">
+                            <Run Text="B: " FontWeight="Bold"/>
+                            <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="Normal"></Run>
+                        </TextBlock>
+                    </Grid>
+                </Button>
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelStyle}">
-                <Button Content="Test" Style="{StaticResource ButtonStyle}"/>
-                <Button Content="Test" Style="{StaticResource ButtonStyle}"/>
+                <Button Command="{Binding AnswerOpt3Command}" CommandParameter="2" Style="{StaticResource ButtonStyle}">
+                    <Grid BorderBrush="{Binding CorrectAnswer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=2}" Background="{Binding ChosenAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=2}" Style="{StaticResource ButtonGridStyle}">
+                        <TextBlock Style="{StaticResource ButtonText1Style}">
+                            <Run Text="C: " FontWeight="Bold"/>
+                            <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="Normal"></Run>
+                        </TextBlock>
+                    </Grid>
+                </Button>
+                <Button Command="{Binding AnswerOpt4Command}" CommandParameter="3" Style="{StaticResource ButtonStyle}">
+                    <Grid BorderBrush="{Binding CorrectAnswer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=3}" Background="{Binding ChosenAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=3}" Style="{StaticResource ButtonGridStyle}">
+                        <TextBlock Style="{StaticResource ButtonText1Style}">
+                            <Run Text="D: " FontWeight="Bold"/>
+                            <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="Normal"></Run>
+                        </TextBlock>
+                    </Grid>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

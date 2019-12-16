@@ -115,7 +115,7 @@ namespace RagnarockApp
             //Loading quizzes
             try
             {
-                QuizPlayer.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+                QuizManager.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
             }
             catch (FileNotFoundException)
             {
