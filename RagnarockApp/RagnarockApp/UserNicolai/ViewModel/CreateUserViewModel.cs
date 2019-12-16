@@ -67,10 +67,25 @@ namespace RagnarockApp.UserNicolai.ViewModel
         /// </summary>
         public void AddUser()
         {
-            UserCatalog.AddUser(SelectedUser);
-            Save();
-            ConfirmText2 = "Du er nu oprettet som bruger";
-            OnPropertyChanged(nameof(ConfirmText2));
+            try
+            {
+                UserCatalog.AddUser(SelectedUser);
+                Save();
+                ConfirmText2 = "Du er nu oprettet som bruger";
+                OnPropertyChanged(nameof(ConfirmText2));
+            }
+            catch (IdExceptions adex)
+            {
+                MessageDialogHelper.Show(adex.Message, "Du har fået en AddExeption");
+            }
+            catch (EmptyInputException eiex)
+            {
+                MessageDialogHelper.Show(eiex.Message, "Du har fået en EiexException");
+            }
+            catch (UserNameAlreadyUsedException adex)
+            {
+                MessageDialogHelper.Show(adex.Message, "Du har fået en UserNameException");
+            }
         }
 
         //Constructor

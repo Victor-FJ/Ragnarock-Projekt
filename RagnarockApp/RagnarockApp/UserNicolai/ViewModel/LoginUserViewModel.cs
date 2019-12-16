@@ -49,6 +49,10 @@ namespace RagnarockApp.UserNicolai.ViewModel
                 ConfirmText = "Du er nu logget ind";
                 OnPropertyChanged(nameof(ConfirmText));
             }
+            catch (EmptyInputException eiex)
+            {
+                MessageDialogHelper.Show(eiex.Message, "Du har fået en EiexException");
+            }
             catch (UserNameException upex)
             {
                 MessageDialogHelper.Show(upex.Message, "Fejl i Login");
