@@ -12,9 +12,7 @@
     <Page.DataContext>
         <viewModel:EventViewModel/>
     </Page.DataContext>
-    <StackPanel Background="LightGreen">
-        <TextBlock FontSize="80" Text="Eventpage"/>
-
+    <StackPanel Orientation="Horizontal" Background="LightGreen">
         <ListView ItemsSource="{Binding Events.Events}">
             <ListView.ItemTemplate>
                     <DataTemplate>
