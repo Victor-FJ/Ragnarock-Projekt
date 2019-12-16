@@ -28,12 +28,7 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
         <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
-            <Setter Property="Width" Value="135"></Setter>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Margin" Value="4"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="200"></Setter>
         </Style>
     </Page.Resources>
 
