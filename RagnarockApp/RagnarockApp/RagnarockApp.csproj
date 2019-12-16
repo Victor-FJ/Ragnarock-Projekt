@@ -184,6 +184,7 @@
     <Compile Include="QuizVictor\View\ResultQuizPage.xaml.cs">
       <DependentUpon>ResultQuizPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserNicolai\Exeptions\EmptyInputException.cs" />
     <Compile Include="UserNicolai\Exeptions\IdExceptions.cs" />
     <Compile Include="UserNicolai\Exeptions\PasswordException.cs" />
     <Compile Include="UserNicolai\Exeptions\UserNameAlreadyUsedException.cs" />
