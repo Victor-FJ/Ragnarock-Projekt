@@ -10,6 +10,7 @@ using RagnarockApp.UserNicolai.Exeptions;
 
 namespace RagnarockApp.UserNicolai.Model
 {
+    //Man ønsker kun 1 objekt. derfor bruger man singleton
     public class UserCatalogSingleton
     {
         private static UserCatalogSingleton _userInstants = new UserCatalogSingleton();
