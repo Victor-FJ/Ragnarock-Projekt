@@ -65,10 +65,10 @@ namespace RagnarockApp.QuizVictor.Model
         private void CheckName(string quizName)
         {
             if (String.IsNullOrWhiteSpace(quizName))
-                throw new ValueEmptyException("The name has to include some text");
+                throw new ValueEmptyException("Navnet skal inkludere noget tekst");
             for (int i = 0; i < Quizzes.Count; i++)
-                if (Quizzes[i].QuizName == quizName)
-                    throw new ValueAlreadyExistException("This name is already used by another quiz");
+                if (Quizzes[i].QuizName.ToLower() == quizName.ToLower())
+                    throw new ValueAlreadyExistException("Dette navn er allerede brugt af en anden quiz");
         }
 
         private Quiz FindQuiz(string quizName)
@@ -76,7 +76,7 @@ namespace RagnarockApp.QuizVictor.Model
             for (int i = 0; i < Quizzes.Count; i++)
                 if (Quizzes[i].QuizName == quizName)
                     return Quizzes[i];
-            throw new DoesNotExistException("This quiz does not exist");
+            throw new DoesNotExistException("Denne quiz eksistere ikke");
         }
     }
 }

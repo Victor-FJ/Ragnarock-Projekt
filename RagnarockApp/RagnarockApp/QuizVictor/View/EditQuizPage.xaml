@@ -40,6 +40,7 @@
         </Style>
         <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter"/>
         <converters:CountListConverter x:Key="CountListConverter"/>
+        <converters:TrueAmountConverter x:Key="TrueAmountConverter" FallbackValue="" TrueValue="Skal have 5 spørgsmål"/>
     </Page.Resources>
 
     <Grid Background="#FF1A1A74">
@@ -61,6 +62,8 @@
                             <Run Text="{Binding Quistions, Converter={StaticResource CountListConverter}}"/>
                             <Run Text="   Oprettelses Dato: "/>
                             <Run Text="{Binding CreatedDate, Converter={StaticResource DateTimeOffsetToStringConverter}}"/>
+                            <Run Text="   "/>
+                            <Run Text="{Binding Quistions, Converter={StaticResource TrueAmountConverter}, ConverterParameter=5}" Foreground="Red" FontSize="8"/>
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>

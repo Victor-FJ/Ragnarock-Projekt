@@ -20,9 +20,9 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
-                    throw new ValueEmptyException("The quistion has to include some text");
+                    throw new ValueEmptyException("Spørgsmålet skal inkludere noget tekst");
                 if (!value.Contains('?'))
-                    throw new IsNotQuistionException("The quistion has to include a '?'");
+                    throw new IsNotQuistionException("Spørgsmålet skal indeholde et '?'");
                 _theQuistion = value;
             }
         }
@@ -33,7 +33,7 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
-                    throw new ValueEmptyException("The hint has to include some text");
+                    throw new ValueEmptyException("Hintet skal inkludere noget tekst");
                 _hint = value;
             }
         }
@@ -45,16 +45,16 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (value == null)
-                    throw  new ValueEmptyException("The AnswerOptionsInput cannot be set to null");
+                    throw  new ValueEmptyException("AnswerOptionsInput kan ikke blive sat til null");
                 if (value.Length != 4)
-                    throw new IncorrectSizeException("There has to be exactly 4 answers options");
+                    throw new IncorrectSizeException("Der skal være præcis 4 svars mugligheder");
                 for (int i = 0; i < value.Length; i++)
                 {
                     if (String.IsNullOrWhiteSpace(value[i]))
-                        throw new ValueEmptyException($"The {i + 1}. answer option has to include some text");
+                        throw new ValueEmptyException($"{i + 1}. svarsmuglighed skal inkludere noget tekst");
                     for (int j = 0; j < i; j++)
-                        if (value[i] == value[j])
-                            throw new ValueAlreadyExistException($"The {i + 1}. answer option cannot be the same as the {j + 1}.");
+                        if (value[i].ToLower() == value[j].ToLower())
+                            throw new ValueAlreadyExistException($"{i + 1}. svarsmuglighed kan ikke være det samme som {j + 1}.");
                 }
                 _answerOptions = value;
             }
@@ -66,7 +66,7 @@ namespace RagnarockApp.QuizVictor.Model
             set
             {
                 if (value < 0 || value > _answerOptions.Length)
-                    throw new IndexOutOfRangeException("The answer has to be between one of the 4 answer options");
+                    throw new IndexOutOfRangeException("Svaret skal være 1 af de 4 svarsmugligheder");
                 _answer = value;
             }
         }

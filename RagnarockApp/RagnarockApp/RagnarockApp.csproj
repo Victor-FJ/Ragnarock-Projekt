@@ -130,6 +130,7 @@
     <Compile Include="Common\RelayCommandWParam.cs" />
     <Compile Include="Converters\IndexOfBoolArrayConverter.cs" />
     <Compile Include="Converters\IndexToNumberConverter.cs" />
+    <Compile Include="Converters\TrueAmountConverter.cs" />
     <Compile Include="Converters\TrueFetureConverter.cs" />
     <Compile Include="EventArsen\Exceptions\IsNotEventException.cs" />
     <Compile Include="EventArsen\Model\Event.cs" />
