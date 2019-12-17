@@ -3,12 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp"
+    xmlns:converters="using:RagnarockApp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="961.101" d:DesignHeight="580.645">
 
     <Page.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
         <Style x:Key="MenuNavButtonStyle" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -18,18 +24,17 @@
         <Style x:Key="MenuNavTextStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style x:Key="MenuNavIconStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
             <Setter Property="Margin" Value="6"/>
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="White"/>
         </Style>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter" FallbackValue="Collapsed" TrueValue="Visible"/>
     </Page.Resources>
 
-    <Grid Background="Gray">
+    <Grid Background="#FFDEAF73">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition/>
@@ -39,22 +44,31 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding NavBackCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
-                <StackPanel>
-                    <TextBlock Text="&#xE760;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Tilbage" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <Button Command="{Binding NavForwardCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
-                <StackPanel>
-                    <TextBlock Text="&#xE761;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Frem" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+        <Grid Background="#FFC99E67">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding NavBackCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xE760;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Tilbage" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding NavForwardCommand}" Width="50" Style="{StaticResource MenuNavButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xE761;" FontSize="16" Style="{StaticResource MenuNavIconStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Frem" FontSize="8" Style="{StaticResource MenuNavTextStyle}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="119,0,0,0" Orientation="Horizontal">
+            <Image Source="Assets/RagnarockLogo.png" HorizontalAlignment="Left"/>
+            <TextBlock Margin="70,0,0,0" Text="{Binding Title}" FontSize="30" Width="450" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Margin="20,0,0,0" Text="{Binding ActiveUser.UserName}" Width="100" TextAlignment="Right" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Margin="5,0,0,0" Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource TextBlockStyle}"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Background="Gray">
+        <StackPanel Grid.Column="0" Grid.Row="1">
             <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding LoginUserPage}">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <TextBlock Text="&#xE77B;" Style="{StaticResource MenuNavIconStyle}"/>
@@ -73,25 +87,25 @@
                     <TextBlock Text="Spil Quiz" Style="{StaticResource MenuNavTextStyle}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditUserPage}">
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                    <TextBlock Text="&#xE779;" Style="{StaticResource MenuNavIconStyle}"/>
-                    <TextBlock Text="Bruger Log" Style="{StaticResource MenuNavTextStyle}"/>
-                </StackPanel>
-            </Button>
             <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding CreateUserPage}">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <TextBlock Text="&#xE8FA;" Style="{StaticResource MenuNavIconStyle}"/>
                     <TextBlock Text="Ny Bruger" Style="{StaticResource MenuNavTextStyle}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditEventPage}">
+            <Button Visibility="{Binding IsAdmin, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditUserPage}">
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <TextBlock Text="&#xE7C4;" Style="{StaticResource MenuNavIconStyle}"/>
-                    <TextBlock Text="Rediger Events" Style="{StaticResource MenuNavTextStyle}"/>
+                    <TextBlock Text="&#xE779;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="Bruger Log" Style="{StaticResource MenuNavTextStyle}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditQuizPage}">
+            <Button Visibility="{Binding IsAdmin, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditEventPage}">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="&#xE7C4;" Style="{StaticResource MenuNavIconStyle}"/>
+                    <TextBlock Text="Edit Events" Style="{StaticResource MenuNavTextStyle}"/>
+                </StackPanel>
+            </Button>
+            <Button Visibility="{Binding IsAdmin, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Style="{StaticResource MenuNavButtonStyle}" Command="{Binding NavToPageCommand}" CommandParameter="{Binding EditQuizPage}">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <TextBlock Text="&#xF716;" Style="{StaticResource MenuNavIconStyle}"/>
                     <TextBlock Text="Edit Quiz" Style="{StaticResource MenuNavTextStyle}"/>

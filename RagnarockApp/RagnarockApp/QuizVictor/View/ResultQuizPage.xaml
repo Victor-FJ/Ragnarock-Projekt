@@ -16,88 +16,78 @@
 
     <Page.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="Margin" Value="4"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="350"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
-        <Style x:Key="ButtonGridStyle" TargetType="Grid">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="350"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="BorderThickness" Value="5"/>
-        </Style>
-        <Style x:Key="ButtonText1Style" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="300"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="10,0,0,0"></Setter>
-        </Style>
-        <Style x:Key="FuncButtonStyle" TargetType="Button">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="Height" Value="70"/>
-        </Style>
-        <Style x:Key="MenuNavIconStyle" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-            <Setter Property="Margin" Value="6"/>
-            <Setter Property="FontSize" Value="25"/>
-        </Style>
-        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Spacing" Value="30"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="40"/>
         </Style>
         <converters:IndexOfArrayConverter x:Key="IndexOfArrayConverter"/>
         <converters:CountListConverter x:Key="CountListConverter"/>
-        <converters:IndexToNumberConverter x:Key="IndexToNumberConverter"/>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter" TrueValue="Bold" FallbackValue="Normal"/>
+        <converters:TrueFetureConverter x:Key="TrueFetureConverter2" TrueValue="Visible" FallbackValue="Collapsed"/>
+        <converters:ComplexFetureConverter x:Key="ComplexFetureConverter" FallbackValue="Black" Value1="Red" Value2="Green"/>
     </Page.Resources>
 
     <Grid Background="#FF518551">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Finished" FontSize="64" Grid.ColumnSpan="3" Style="{StaticResource TextBlockStyle}"/>
-        <ListView Grid.Column="1" Grid.Row="1" Background="DarkSeaGreen" ItemsSource="{Binding QuistionCollection}" SelectedItem="{Binding SelectedQuistion, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" Grid.RowSpan="2" TabIndex="13">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="3,6,3,6">
-                        <TextBlock Text="{Binding TheQuistion}" FontSize="16"/>
-                        <TextBlock>
-                                <Run Text="Hint: "/>
-                                <Run Text="{Binding Hint}"/>
-                        </TextBlock>
-                        <TextBlock FontSize="10">
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=0}"/>
+        <TextBlock Text="Resultater" FontSize="64" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="30">
+            <Button Content="Spil igen" Command="{Binding PlayAgainCommand}" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Spil en anden quiz" Command="{Binding PlayAnotherCommand}" Style="{StaticResource ButtonStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Spacing="10">
+            <TextBlock Text="Du færdigjorde quizzen" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Visibility="{Binding IsAllCorrect, Converter={StaticResource TrueFetureConverter2}, ConverterParameter=0}" Style="{StaticResource TextBlockStyle}">
+                <Run Text="Sejt, du fik alle"/>
+                <Run Text="{Binding ThisPlaySession.PlayedQuiz.Quistions, Converter={StaticResource CountListConverter}}"/>
+                <Run Text="spørgmål rigtigt"/>
+            </TextBlock>
+            <TextBlock Visibility="{Binding IsAllCorrect, Converter={StaticResource TrueFetureConverter2}, ConverterParameter=1}" Style="{StaticResource TextBlockStyle}">
+                <Run Text="Godt gået, du fik"/>
+                <Run Text="{Binding NoOfCorrectAnswers}"/>
+                <Run Text="ud af"/>
+                <Run Text="{Binding ThisPlaySession.PlayedQuiz.Quistions, Converter={StaticResource CountListConverter}}"/>
+                <Run Text="spørgmål rigtigt"/>
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.Row="1" Background="DarkSeaGreen">
+            <TextBlock Text="{Binding ThisPlaySession.PlayedQuiz.QuizName}" FontSize="24" Style="{StaticResource TextBlockStyle}"/>
+            <ListView Margin="0,50,0,0" ItemsSource="{Binding ThisPlaySession.AnswerQuistions}" SelectedItem="{Binding SelectedQuistion, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" Grid.RowSpan="2" TabIndex="13">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="3,6,3,6">
+                            <TextBlock Text="{Binding AQuistion.TheQuistion}" FontSize="16"/>
+                            <TextBlock FontSize="10">
+                                <Run Text="{Binding AQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="{Binding AQuistion.Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=0}" Foreground="{Binding UserAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=0}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}"/>
+                                <Run Text="{Binding AQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="{Binding AQuistion.Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=1}" Foreground="{Binding UserAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=1}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=2}"/>
+                                <Run Text="{Binding AQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="{Binding AQuistion.Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=2}" Foreground="{Binding UserAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=2}"/>
                                 <Run Text="   "/>
-                                <Run Text="{Binding AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="{Binding Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=3}"/>
-                        </TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <Run Text="{Binding AQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="{Binding AQuistion.Answer, Converter={StaticResource TrueFetureConverter}, ConverterParameter=3}" Foreground="{Binding UserAnswer, Converter={StaticResource ComplexFetureConverter}, ConverterParameter=3}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

@@ -71,11 +71,27 @@ namespace RagnarockApp.QuizVictor.Model
             }
         }
 
+        public int[] AnswerStats { get; set; }
+
+        public int TotalStats
+        {
+            get
+            {
+                int total = 0;
+                foreach (int answerStat in AnswerStats)
+                    total += answerStat;
+                if (total == 0)
+                    return 1;
+                return total;
+            }
+        }
+
         public Quistion()
         {
             _theQuistion = "Is this the default quistion?";
             _answerOptions = new string[] {"A: ...", "B: ...", "C: ...", "D: ..."};
             _hint = "A hint";
+            AnswerStats = new int[4];
         }
 
         public Quistion(string theQuistion, string hint, string[] answerOptions, int answer)

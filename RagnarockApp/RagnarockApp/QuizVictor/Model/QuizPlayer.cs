@@ -18,7 +18,6 @@ namespace RagnarockApp.QuizVictor.Model
 
         private QuizPlayer()
         {
-            
         }
     }
 }

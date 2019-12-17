@@ -39,9 +39,16 @@
         <Style x:Key="ButtonText1Style" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="Width" Value="260"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Margin" Value="10,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="ButtonText2Style" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,10,0"></Setter>
         </Style>
         <Style x:Key="FuncButtonStyle" TargetType="Button">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -110,12 +117,12 @@
                     <TextBlock Text="&#xE72A;" Style="{StaticResource MenuNavIconStyle}"/>
                 </StackPanel>
             </Button>
-            <TextBlock Text="{Binding QuizPlayer.CurrentPlaySession.PlayedQuiz.QuizName}" FontSize="16" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="{Binding ThisQuizPlayer.CurrentPlaySession.PlayedQuiz.QuizName}" FontSize="16" Style="{StaticResource TextBlockStyle}"/>
             <TextBlock Style="{StaticResource TextBlockStyle}">
                 <Run Text="Spørgsmål"/>
-                <Run Text="{Binding QuizPlayer.MarkedQuistionNo, Converter={StaticResource IndexToNumberConverter}}"/>
+                <Run Text="{Binding ThisQuizPlayer.MarkedQuistionNo, Converter={StaticResource IndexToNumberConverter}}"/>
                 <Run Text="ud af"/>
-                <Run Text="{Binding QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions, Converter={StaticResource CountListConverter}}"/>
+                <Run Text="{Binding ThisQuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions, Converter={StaticResource CountListConverter}}"/>
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Spacing="30">
@@ -126,6 +133,7 @@
                             <Run Text="A: " FontWeight="Bold"/>
                             <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" FontWeight="Normal"></Run>
                         </TextBlock>
+                        <TextBlock Text="{Binding StatsBox, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=0}" Style="{StaticResource ButtonText2Style}"/>
                     </Grid>
                 </Button>
                 <Button Command="{Binding AnswerOpt2Command}" CommandParameter="1" Style="{StaticResource ButtonStyle}">
@@ -134,6 +142,7 @@
                             <Run Text="B: " FontWeight="Bold"/>
                             <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" FontWeight="Normal"></Run>
                         </TextBlock>
+                        <TextBlock Text="{Binding StatsBox, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=1}" Style="{StaticResource ButtonText2Style}"/>
                     </Grid>
                 </Button>
             </StackPanel>
@@ -144,6 +153,7 @@
                             <Run Text="C: " FontWeight="Bold"/>
                             <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" FontWeight="Normal"></Run>
                         </TextBlock>
+                        <TextBlock Text="{Binding StatsBox, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=2}" Style="{StaticResource ButtonText2Style}"/>
                     </Grid>
                 </Button>
                 <Button Command="{Binding AnswerOpt4Command}" CommandParameter="3" Style="{StaticResource ButtonStyle}">
@@ -152,6 +162,7 @@
                             <Run Text="D: " FontWeight="Bold"/>
                             <Run Text="{Binding MarkedQuistion.AnswerOptions, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" FontWeight="Normal"></Run>
                         </TextBlock>
+                        <TextBlock Text="{Binding StatsBox, Converter={StaticResource IndexOfArrayConverter}, ConverterParameter=3}" Style="{StaticResource ButtonText2Style}"/>
                     </Grid>
                 </Button>
             </StackPanel>

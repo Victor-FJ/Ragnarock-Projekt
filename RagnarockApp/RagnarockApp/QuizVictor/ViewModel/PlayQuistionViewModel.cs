@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RagnarockApp.Annotations;
 using RagnarockApp.Common;
+using RagnarockApp.Persistency;
 using RagnarockApp.QuizVictor.Model;
 using RagnarockApp.QuizVictor.View;
 
@@ -15,7 +16,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 {
     public class PlayQuistionViewModel : INotifyPropertyChanged
     {
-        public QuizPlayer QuizPlayer { get; set; }
+        public QuizPlayer ThisQuizPlayer { get; set; }
         public Quistion MarkedQuistion { get; set; }
 
 
@@ -43,9 +44,9 @@ namespace RagnarockApp.QuizVictor.ViewModel
         public PlayQuistionViewModel()
         {
             if (QuizPlayer.Instance != null)
-                QuizPlayer = QuizPlayer.Instance;
-            if (QuizPlayer.CurrentPlaySession != null)
-                MarkedQuistion = QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions[QuizPlayer.MarkedQuistionNo];
+                ThisQuizPlayer = QuizPlayer.Instance;
+            if (ThisQuizPlayer.CurrentPlaySession != null)
+                MarkedQuistion = ThisQuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions[ThisQuizPlayer.MarkedQuistionNo];
 
             ContinueCommand = new RelayCommand(Continue, QuistionIsCompleted);
             AnswerOpt1Command = new RelayCommandWParam(Answer, AnswerOpt1Enabled);
@@ -93,42 +94,46 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             if (_quistionIsCompleted)
                 return false;
-            return !QuizPlayer.CurrentPlaySession.Used50;
+            return !ThisQuizPlayer.CurrentPlaySession.Used50;
         }
 
         public bool DisplayHintIsAvail()
         {
             if (_quistionIsCompleted)
                 return false;
-            return !QuizPlayer.CurrentPlaySession.UsedHint;
+            return !ThisQuizPlayer.CurrentPlaySession.UsedHint;
         }
 
         public bool ShowStatisticsIsAvail()
         {
             if (_quistionIsCompleted)
                 return false;
-            return !QuizPlayer.CurrentPlaySession.UsedStats;
+            return !ThisQuizPlayer.CurrentPlaySession.UsedStats;
         }
 
         //Actions
 
-        public void Continue()
+        public async void Continue()
         {
-            if (QuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions.Count > ++QuizPlayer.MarkedQuistionNo)
+            if (ThisQuizPlayer.CurrentPlaySession.PlayedQuiz.Quistions.Count > ++ThisQuizPlayer.MarkedQuistionNo)
                 MainViewModel.Instance.NavigateToPage(typeof(PlayQuistionPage));
-            //Else
-            //Navigation to end page
+            else
+            {
+                await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizManager.Instance.Quizzes);
+                MainViewModel.Instance.NavigateToPage(typeof(ResultQuizPage));
+            }
         }
 
         public void Answer(object answerChoice)
         {
             int answerChoice2 = Int32.Parse((string) answerChoice);
-            QuizPlayer.CurrentPlaySession.AnswerQuistions.Add(new AnsweredQuistion(MarkedQuistion, answerChoice2));
+            MarkedQuistion.AnswerStats[answerChoice2]++;
             if (answerChoice2 == MarkedQuistion.Answer)
                 ChosenAnswer[answerChoice2] = 2;
             else
                 ChosenAnswer[answerChoice2] = 1;
             CorrectAnswer = MarkedQuistion.Answer;
+            ThisQuizPlayer.CurrentPlaySession.AnswerQuistions.Add(new AnsweredQuistion(MarkedQuistion, ChosenAnswer));
             QuistionIsComplete();
         }
 
@@ -145,17 +150,31 @@ namespace RagnarockApp.QuizVictor.ViewModel
             else
                 _availAnswerOpt[index] = true;
             UpdateAnswerOptions();
+            if (!MainViewModel.Instance.ActiveUser.Administrator)
+                ThisQuizPlayer.CurrentPlaySession.Used50 = true;
+            ((RelayCommand)HalfAnswerOptCommand).RaiseCanExecuteChanged();
         }
 
         public void DisplayHint()
         {
             HintBox = MarkedQuistion.Hint;
             OnPropertyChanged(nameof(HintBox));
+            if (!MainViewModel.Instance.ActiveUser.Administrator)
+                ThisQuizPlayer.CurrentPlaySession.UsedHint = true;
+            ((RelayCommand)DisplayHintCommand).RaiseCanExecuteChanged();
         }
 
         public void ShowStatistics()
         {
-
+            StatsBox = new string[4];
+            for (int i = 0; i < 4; i++)
+            {
+                StatsBox[i] = (MarkedQuistion.AnswerStats[i] / (MarkedQuistion.TotalStats * 0.01)).ToString("N0") + " %";
+            }
+            OnPropertyChanged(nameof(StatsBox));
+            if (!MainViewModel.Instance.ActiveUser.Administrator)
+                ThisQuizPlayer.CurrentPlaySession.UsedStats = true;
+            ((RelayCommand)ShowStatisticsCommand).RaiseCanExecuteChanged();
         }
 
         #endregion

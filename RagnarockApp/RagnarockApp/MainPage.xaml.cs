@@ -19,7 +19,7 @@ namespace RagnarockApp
             MainViewModel viewModel = new MainViewModel(new NavigationService(MainPageFrame));
             this.DataContext = viewModel;
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            Color backGroundColor = Color.FromArgb(255, 128, 128, 128);
+            Color backGroundColor = Color.FromArgb(255, 201, 158, 103);
             titleBar.BackgroundColor = backGroundColor;
             titleBar.ButtonBackgroundColor = backGroundColor;
         }

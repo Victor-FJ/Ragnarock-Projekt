@@ -92,6 +92,7 @@ namespace RagnarockApp
             NavBackCommand = new RelayCommand(NavigateBack);
             NavForwardCommand = new RelayCommand(NavigateForward);
             LoadFiles();
+            ActiveUser = new User("Gæst", 0, false, "Gæst", "");
         }
 
         #region MainHandler
@@ -120,11 +121,18 @@ namespace RagnarockApp
             //Loading quizzes
             try
             {
-                QuizManager.Instance.Quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+                List<Quiz> quizzes = await PersistencyFacade.LoadQuizzesFromJsonAsync();
+                if (quizzes == null)
+                    throw new FileLoadException();
+                QuizManager.Instance.Quizzes = quizzes;
+            }
+            catch (FileLoadException)
+            {
+                message += "\nQuiz filen er tom";
             }
             catch (FileNotFoundException)
             {
-                message += "\nQuizzes";
+                message += "\nQuiz filen blev ikke fundet";
             }
 
             //Loading users
@@ -132,29 +140,36 @@ namespace RagnarockApp
             {
                 ObservableCollection<User> users = await PersistencyFacade.LoadUsersFromJsonAsync();
                 if (users == null)
-                    throw new FileLoadException("Found User file but its empty");
+                    throw new FileLoadException();
                 UserCatalogSingleton.UserInstants.Users = users;
             }
-            catch (FileLoadException ex)
+            catch (FileLoadException)
             {
-                message += "\n" + ex;
+                message += "\nBruger filen er tom";
             }
             catch (FileNotFoundException)
             {
-                message += "\nUsers";
+                message += "\nBruger filen blev ikke fundet";
             }
 
             //Loading events
             try
             {
-                EventManagerSingleton.Instance.Events = await PersistencyFacade.LoadEventsFromJsonAsync();
+                ObservableCollection<Event> events = await PersistencyFacade.LoadEventsFromJsonAsync();
+                if (events == null)
+                    throw new FileLoadException();
+                EventManagerSingleton.Instance.Events = events;
+            }
+            catch (FileLoadException)
+            {
+                message += "\nEvent filen er tom";
             }
             catch (FileNotFoundException)
             {
-                message += "\nEvents";
+                message += "\nEvent filen blev ikke fundet";
             }
             if (message != "")
-                MessageDialogHelper.Show($"The following files did not load:{message}\n\nTry adding some in the program to fix", "File did not load");
+                MessageDialogHelper.Show($"Følgende fejl fandt sted:{message}\n\nVed at interagere med appen overskrives gamle filer", "Filen loadede ikke");
         }
 
         #region NotifyPropertyChanged

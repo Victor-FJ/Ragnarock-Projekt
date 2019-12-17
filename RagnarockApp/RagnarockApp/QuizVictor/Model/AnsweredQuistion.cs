@@ -9,9 +9,9 @@ namespace RagnarockApp.QuizVictor.Model
     public class AnsweredQuistion
     {
         public Quistion AQuistion { get; set; }
-        public int UserAnswer { get; set; }
+        public int[] UserAnswer { get; set; }
 
-        public AnsweredQuistion(Quistion aQuistion, int userAnswer)
+        public AnsweredQuistion(Quistion aQuistion, int[] userAnswer)
         {
             AQuistion = aQuistion;
             UserAnswer = userAnswer;
