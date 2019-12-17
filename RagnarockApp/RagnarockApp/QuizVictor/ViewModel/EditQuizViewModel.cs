@@ -103,7 +103,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
             try
             {
                 QuizManagerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, false);
-                if (await MessageDialogHelper.ShowWInput($"Are you sure you want to change the name of the quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Change Name?"))
+                if (await MessageDialogHelper.ShowWInput($"Er du sikker på du vil ændre navnet på denne quiz?\n({SelectedQuiz.QuizName}) -> ({QuizNameToEdit})", "Ændre navn?"))
                 {
                     QuizManagerInstance.ModifyQuizName(SelectedQuiz.QuizName, QuizNameToEdit, true);
                     await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizManager.Instance.Quizzes);
@@ -132,7 +132,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
 
         public async void DeleteQuiz()
         {
-            if (await MessageDialogHelper.ShowWInput($"Are you sure you want to delete the quiz?\n({SelectedQuiz.QuizName})", "Delete quiz?"))
+            if (await MessageDialogHelper.ShowWInput($"Er du sikker på du vil slette denne quiz?\n({SelectedQuiz.QuizName})", "Slet quiz?"))
             {
                 QuizManagerInstance.DeleteQuiz(SelectedQuiz.QuizName, true);
                 await PersistencyFacade.SaveQuizzesAsJsonAsync(QuizManager.Instance.Quizzes);

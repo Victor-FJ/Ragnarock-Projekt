@@ -36,7 +36,7 @@ namespace RagnarockApp.QuizVictor.ViewModel
         {
             Quizzes = new ObservableCollection<Quiz>();
             foreach (Quiz quiz in QuizManager.Instance.Quizzes)
-                if (quiz.Quistions.Count > 0)
+                if (quiz.Quistions.Count >= 5)
                     Quizzes.Add(quiz);
             PlayQuizCommand = new RelayCommand(PlayQuiz, QuizIsSelected);
         }
