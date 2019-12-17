@@ -37,21 +37,8 @@ namespace RagnarockApp.UserNicolai.Model
 
         public void AddUser(User newUser)
         {
-
-            try
-            {
-                Validate(newUser);
-                Users.Add(newUser);
-            }
-            catch (IdExceptions adex)
-            {
-                MessageDialogHelper.Show(adex.Message, "Du har fået en AddExeption");
-            }
-
-            catch (UserNameAlreadyUsedException adex)
-            {
-                MessageDialogHelper.Show(adex.Message, "Du har fået en UserNameException");
-            }
+            Validate(newUser);
+            Users.Add(newUser);
         }
 
         public void RemoveAt(int index)
@@ -59,12 +46,6 @@ namespace RagnarockApp.UserNicolai.Model
             Users.RemoveAt(index);
         }
 
-
-        //Exeptions
-        //public void Add(int index, User userAdd)
-        //{
-
-        //}
 
         /// <summary>
         /// Bruges til at identificere om brugernavn og Password er korrekt
@@ -74,6 +55,8 @@ namespace RagnarockApp.UserNicolai.Model
         /// <returns> Retunere en bruger hvis den findes</returns>
         public User Login(string userName, string userCode)
         {
+            if (String.IsNullOrWhiteSpace(userName))
+                throw new EmptyInputException("Du har ikke skrevet noget i Brugernavn");
             foreach (User user in Users)
                 if (user.UserName == userName)
                     if (user.Code == userCode)
@@ -85,6 +68,8 @@ namespace RagnarockApp.UserNicolai.Model
 
         private void Validate(User userAdd)
         {
+            if (String.IsNullOrWhiteSpace(userAdd.UserName))
+                throw new EmptyInputException("Du har ikke skrevet noget i Brugernavn");
             if (userAdd.Id.ToString().Length != 6) 
                 throw new IdExceptions("Der er ikke de rette antal cifre. Du har skrevet " + userAdd.Id.ToString().Length + " cifre");
             foreach (User user in Users)

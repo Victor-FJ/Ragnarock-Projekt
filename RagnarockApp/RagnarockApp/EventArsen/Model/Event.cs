@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RagnarockApp.EventArsen.Exceptions;
+using RagnarockApp.QuizVictor.Exceptions;
 
 namespace RagnarockApp.EventArsen.Model
 {
@@ -13,6 +15,7 @@ namespace RagnarockApp.EventArsen.Model
         public string TimeOfEvent { get; set; }
         public string EventSubject { get; set; }
         public string EventImage { get; set; }
+
 
         public Event()
         {
