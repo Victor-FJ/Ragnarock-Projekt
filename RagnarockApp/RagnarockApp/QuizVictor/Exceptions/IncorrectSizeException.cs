@@ -8,11 +8,11 @@ namespace RagnarockApp.QuizVictor.Exceptions
 {
     /// <summary>
     /// This exception is thrown in case it is attempted to
-    /// set a quistion property to be empty
+    /// set the AnswerOptionsInput to an array with a size other than 4
     /// </summary>
-    public class QuistionPropEmptyException : Exception
+    public class IncorrectSizeException : Exception
     {
-        public QuistionPropEmptyException(string message) 
+        public IncorrectSizeException(string message) 
             : base(message)
         {
         }

@@ -3,12 +3,47 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RagnarockApp.UserNicolai.View"
+    xmlns:viewModel="using:RagnarockApp.UserNicolai.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModel:LoginUserViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"></Setter>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="Width" Value="135"></Setter>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Width" Value="200"></Setter>
+        </Style>
+    </Page.Resources>
 
-    <Grid>
+    <Grid Background="DarkBlue">
+        <StackPanel Background="DarkBlue" Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Text="BrugerNavn" Foreground="White"></TextBlock>
+                <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TextBlockStyle}" Text="Password" Foreground="White"></TextBlock>
+                <PasswordBox Style="{StaticResource PasswordBoxStyle}" Password="{Binding UserCode, Mode=TwoWay}"></PasswordBox>
+            </StackPanel>
 
+            <Button Content="Login" FontSize="30" Foreground="Black" Background="LightBlue" Command="{Binding LoginCommand}"></Button>
+            <Button Content="Opret Bruger" FontSize="30" Foreground="Black" Background="LightBlue" Command="{Binding OpretBrugerCommand}"></Button>
+            <TextBlock Text="{Binding ConfirmText}" Foreground="Yellow" FontSize="20"></TextBlock>
+        </StackPanel>
     </Grid>
+
 </Page>

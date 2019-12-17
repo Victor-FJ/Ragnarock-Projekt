@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace RagnarockApp.UserNicolai.Exeptions
 {
-    class UserExeptions
+    class EmptyInputException: Exception
     {
+        public EmptyInputException(string message) : base(message)
+        {
+
+        }
     }
 }

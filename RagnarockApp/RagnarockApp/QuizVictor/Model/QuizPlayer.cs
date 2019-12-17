@@ -12,13 +12,12 @@ namespace RagnarockApp.QuizVictor.Model
         public static QuizPlayer Instance
         { get { return _instance; } }
 
-        public List<Quiz> Quizzes { get; set; }
+
+        public PlaySession CurrentPlaySession { get; set; }
+        public int MarkedQuistionNo { get; set; }
 
         private QuizPlayer()
         {
-            Quizzes = new List<Quiz>();
         }
-
-        
     }
 }

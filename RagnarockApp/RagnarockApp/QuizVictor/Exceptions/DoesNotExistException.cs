@@ -8,11 +8,11 @@ namespace RagnarockApp.QuizVictor.Exceptions
 {
     /// <summary>
     /// This exception is thrown in case it is attempted to
-    /// set the AnswerOptions to an array with a size other than 4
+    /// find a object that does not exist
     /// </summary>
-    public class AnsOptIncorrectSizeException : Exception
+    public class DoesNotExistException : Exception
     {
-        public AnsOptIncorrectSizeException(string message) 
+        public DoesNotExistException(string message) 
             : base(message)
         {
         }
